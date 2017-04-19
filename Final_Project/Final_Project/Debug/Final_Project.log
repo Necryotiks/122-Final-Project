@@ -1,3 +1,12 @@
-﻿  main.cpp
-  Final_Project.vcxproj -> C:\Users\Necryotiks\Documents\Git_Repos\WSU-CPTS\Final_Project\Debug\Final_Project.exe
-  Final_Project.vcxproj -> C:\Users\Necryotiks\Documents\Git_Repos\WSU-CPTS\Final_Project\Debug\Final_Project.pdb (Full PDB)
+﻿  Tower.cpp
+  Stats.cpp
+  Source.cpp
+  main.cpp
+  Floor.cpp
+  Events.cpp
+  Encounter.cpp
+  Creature.cpp
+  Boss.cpp
+  Generating Code...
+  Final_Project.vcxproj -> C:\Users\Kathy\Desktop\Final CS PA\122-Final-Project\Final_Project\Debug\Final_Project.exe
+  Final_Project.vcxproj -> C:\Users\Kathy\Desktop\Final CS PA\122-Final-Project\Final_Project\Debug\Final_Project.pdb (Full PDB)
