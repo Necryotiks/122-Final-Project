@@ -6,7 +6,7 @@
 class Boss : public Creature
 {
 public:
-	Boss();
+	Boss(string newname, int newHP, int newSTR);
 	~Boss();
 
 	//all stats derived from Creature.h

@@ -1,9 +1,11 @@
 #include "Creature.h"
 
 
-Creature::Creature()
+Creature::Creature(string newname, int newHP, int newSTR)
 {
-
+	name = newname;
+	hp = newHP;
+	strength = newSTR;
 }
 
 
@@ -14,7 +16,7 @@ Creature::~Creature()
 
 
 
-int Creature::get_health()
+int Creature::get_health() const
 {
 	return hp;
 }
@@ -32,11 +34,11 @@ void Creature::set_strength(int temp)
 	strength = temp;
 }
 
-int Creature::get_defense()
-{
-	return defense;
-}
-void Creature::set_defense(int temp)
-{
-	defense = temp;
-}
+//int Creature::get_defense()
+//{
+//	return defense;
+//}
+//void Creature::set_defense(int temp)
+//{
+//	defense = temp;
+//}
