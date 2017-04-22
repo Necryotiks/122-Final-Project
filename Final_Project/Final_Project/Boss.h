@@ -1,10 +1,19 @@
 #pragma once
 #include "Creature.h"
-class Boss :
-	public Creature
+
+///Final enemy - includes stats
+
+class Boss : public Creature
 {
 public:
 	Boss();
 	~Boss();
+
+	//all stats derived from Creature.h
+
+private:
+	int health;
+	int defense;
+	int strength;
 };
 

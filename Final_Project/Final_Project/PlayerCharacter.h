@@ -35,4 +35,3 @@ private:
 	int currentLVL;
 	Inventory gear;
 };
-
