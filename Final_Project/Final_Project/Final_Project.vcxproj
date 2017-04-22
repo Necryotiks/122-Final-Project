@@ -145,24 +145,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Bob.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Creature.h" />
     <ClInclude Include="Encounter.h" />
-    <ClInclude Include="Events.h" />
     <ClInclude Include="Floor.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="Source.h" />
-    <ClInclude Include="Stats.h" />
     <ClInclude Include="Tower.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bob.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Creature.cpp" />
     <ClCompile Include="Encounter.cpp" />
     <ClCompile Include="Events.cpp" />
     <ClCompile Include="Floor.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Source.cpp" />
-    <ClCompile Include="Stats.cpp" />
     <ClCompile Include="Tower.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
