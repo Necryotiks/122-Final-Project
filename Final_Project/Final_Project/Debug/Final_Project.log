@@ -1,7 +1,6 @@
-﻿  Tower.cpp
+﻿  main.cpp
+  Tower.cpp
+  Floor.cpp
   Generating Code...
-  Compiling...
-  main.cpp
-  Generating Code...
-  Final_Project.vcxproj -> C:\Users\Kathy\Desktop\Final CS PA\122-Final-Project\Final_Project\Debug\Final_Project.exe
-  Final_Project.vcxproj -> C:\Users\Kathy\Desktop\Final CS PA\122-Final-Project\Final_Project\Debug\Final_Project.pdb (Full PDB)
+  Final_Project.vcxproj -> C:\Users\Necryotiks\Documents\Git_Repos\122-Final-Project\Final_Project\Debug\Final_Project.exe
+  Final_Project.vcxproj -> C:\Users\Necryotiks\Documents\Git_Repos\122-Final-Project\Final_Project\Debug\Final_Project.pdb (Full PDB)

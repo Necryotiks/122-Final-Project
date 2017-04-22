@@ -16,11 +16,11 @@ Creature::~Creature()
 
 int Creature::get_health()
 {
-	return health;
+	return hp;
 }
 void Creature::set_health(int temp)
 {
-	health = temp;
+	hp = temp;
 }
 
 int Creature::get_strength()

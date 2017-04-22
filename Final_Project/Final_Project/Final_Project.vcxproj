@@ -88,12 +88,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>SFML_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Kathy\Desktop\Final CS PA\122-Final-Project\Final_Project\SFML-2.4.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Necryotiks\Documents\Git_Repos\122-Final-Project\Final_Project\SFML-2.4.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Kathy\Desktop\Final CS PA\122-Final-Project\Final_Project\SFML-2.4.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Necryotiks\Documents\Git_Repos\122-Final-Project\Final_Project\SFML-2.4.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-window-s-d.lib;sfml-system-s-d.lib;opengl32.lib;freetype.lib;jpeg.lib;sfml-graphics-s-d.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -150,7 +150,7 @@
     <ClInclude Include="Creature.h" />
     <ClInclude Include="Encounter.h" />
     <ClInclude Include="Floor.h" />
-    <ClInclude Include="Item.h" />
+    <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="Source.h" />
     <ClInclude Include="Tower.h" />
   </ItemGroup>
@@ -161,8 +161,8 @@
     <ClCompile Include="Encounter.cpp" />
     <ClCompile Include="Events.cpp" />
     <ClCompile Include="Floor.cpp" />
-    <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Tower.cpp" />
   </ItemGroup>

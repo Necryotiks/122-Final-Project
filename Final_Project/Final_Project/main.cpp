@@ -5,16 +5,16 @@
 #include "Encounter.h"
 #include "Floor.h"
 #include "Tower.h"
-#include "Item.h"
+//#include "Item.h"
 
-#include <SFML\/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 
 int main()
 {
 	int currentfloor = 1, choice = 0;
 
-	sf::RenderWindow window(sf::VideoMode(825, 600), "Andy's Tower of DOOM!");
+	sf::RenderWindow window(sf::VideoMode(825, 600), "The Perils of Aeliorn: Mage's Tower Ascent");
 	
 	///Main Character
 	sf::Texture bob_front;
@@ -34,9 +34,9 @@ int main()
 	//create textures/sprites for all 5 enemies. edit positions/scales
 
 	///Items
-	Item shield(0,0,5,"Shield");
+	/*Item shield(0,0,5,"Shield");
 	Item dagger(0, 5, 0, "Dagger");
-	Item elixer(10, 0, 0, "Elixer");
+	Item elixer(10, 0, 0, "Elixer");*/
 	//item in which player can choose which stat to increase created later on
 
 	///Other Elements
@@ -114,7 +114,7 @@ int main()
 					//attack?
 				}
 			}
-			if ((bob.getPosition().x == 600) && (bob.getPosition().y == 225))
+			if (bob.getPosition().x == 600 && bob.getPosition().y == 225)
 			{
 				//encounter
 				switch (currentfloor)
@@ -134,10 +134,12 @@ int main()
 				case 5:
 					//bigboyboss
 					break;
+				default:
+					break;
 				}
 			}
 
-			if ((bob.getPosition().x == 650) && (bob.getPosition().y == 225))
+			if (bob.getPosition().x == 650 && bob.getPosition().y == 225)
 			{
 				//chest
 				switch (currentfloor)
@@ -154,26 +156,28 @@ int main()
 				case 4:
 					//display choices (3)
 					cin >> choice;
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) //plus health
-					{
-						Item extrah(5, 0, 0, "Potion");
-					}
-					else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) //plus strength
-					{
-						Item extras(0, 5, 0, "CrossBow");
-					}
-					else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) //plus defense
-					{
-						Item extrad(0, 0, 5, "Helmet");
-					}
+					//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) //plus health
+					//{
+					//	Item extrah(5, 0, 0, "Potion");
+					//}
+					//else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) //plus strength
+					//{
+					//	Item extras(0, 5, 0, "CrossBow");
+					//}
+					//else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) //plus defense
+					//{
+					//	Item extrad(0, 0, 5, "Helmet");
+					//}
 					break;
 				case 5:
 					//special somethinng - end of game - close window.
 					break;
+				default:
+					break;
 				}
 			}
 
-			if ((bob.getPosition().x == 700) && (bob.getPosition().y == 225))
+			if (bob.getPosition().x == 700 && bob.getPosition().y == 225)
 			{
 				if (currentfloor == 5)
 				{

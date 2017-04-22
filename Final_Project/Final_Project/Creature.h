@@ -18,7 +18,7 @@ public:
 	void set_defense(int temp);
 
 private:
-	int health;
+	int hp;
 	int strength;
 	int defense;
 };
