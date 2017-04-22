@@ -7,43 +7,63 @@
 #include "Tower.h"
 //#include "Item.h"
 
-#include <SFML/Graphics.hpp>
 
 
 int main()
 {
-	int currentfloor = 1, choice = 0;
+	// setup window
+	sf::Vector2i screenDimensions(800, 600);
+	sf::RenderWindow window(sf::VideoMode(screenDimensions.x, screenDimensions.y), "The Perils of Aeliorn: Mage's Tower Ascent");
+	window.setFramerateLimit(60);
 
-	sf::RenderWindow window(sf::VideoMode(825, 600), "The Perils of Aeliorn: Mage's Tower Ascent");
-	
-	///Main Character
-	sf::Texture bob_front;
-	bob_front.loadFromFile("BobSprite/BobFront.png");
-	sf::Texture bob_back;
-	bob_back.loadFromFile("BobSprite/BobBack.png");
-	sf::Texture bob_left;
-	bob_left.loadFromFile("BobSprite/BobLeft.png");
-	sf::Texture bob_right;
-	bob_right.loadFromFile("BobSprite/BobRight.png");
-	sf::Sprite bob(bob_front);
-	bob.setPosition(0.0f, 225.0f);
-	bob.setScale(4.0f, 4.5f);
-	//create bob object
-	
-	///Enemies
-	//create textures/sprites for all 5 enemies. edit positions/scales
+	// load texture (spritesheet)
+	sf::Texture texture;
+	if (!texture.loadFromFile("CharSprites/BronzeKnight.png"))
+	{
+		std::cout << "Failed to load player spritesheet!" << std::endl;
+		return 1;
+	}
 
-	///Items
-	/*Item shield(0,0,5,"Shield");
-	Item dagger(0, 5, 0, "Dagger");
-	Item elixer(10, 0, 0, "Elixer");*/
-	//item in which player can choose which stat to increase created later on
+	// set up the animations for all four directions (set spritesheet and push frames)
+	Animation walkingAnimationDown;
+	walkingAnimationDown.setSpriteSheet(texture);
+	walkingAnimationDown.addFrame(sf::IntRect(32, 0, 32, 32));
+	walkingAnimationDown.addFrame(sf::IntRect(64, 0, 32, 32));
+	walkingAnimationDown.addFrame(sf::IntRect(32, 0, 32, 32));
+	walkingAnimationDown.addFrame(sf::IntRect(0, 0, 32, 32));
 
-	///Other Elements
-	Tower gameplay;
+	Animation walkingAnimationLeft;
+	walkingAnimationLeft.setSpriteSheet(texture);
+	walkingAnimationLeft.addFrame(sf::IntRect(32, 32, 32, 32));
+	walkingAnimationLeft.addFrame(sf::IntRect(64, 32, 32, 32));
+	walkingAnimationLeft.addFrame(sf::IntRect(32, 32, 32, 32));
+	walkingAnimationLeft.addFrame(sf::IntRect(0, 32, 32, 32));
 
+	Animation walkingAnimationRight;
+	walkingAnimationRight.setSpriteSheet(texture);
+	walkingAnimationRight.addFrame(sf::IntRect(32, 64, 32, 32));
+	walkingAnimationRight.addFrame(sf::IntRect(64, 64, 32, 32));
+	walkingAnimationRight.addFrame(sf::IntRect(32, 64, 32, 32));
+	walkingAnimationRight.addFrame(sf::IntRect(0, 64, 32, 32));
 
-	///Event
+	Animation walkingAnimationUp;
+	walkingAnimationUp.setSpriteSheet(texture);
+	walkingAnimationUp.addFrame(sf::IntRect(32, 96, 32, 32));
+	walkingAnimationUp.addFrame(sf::IntRect(64, 96, 32, 32));
+	walkingAnimationUp.addFrame(sf::IntRect(32, 96, 32, 32));
+	walkingAnimationUp.addFrame(sf::IntRect(0, 96, 32, 32));
+
+	Animation* currentAnimation = &walkingAnimationDown;
+
+	// set up AnimatedSprite
+	AnimatedSprite animatedSprite(sf::seconds(0.2), true, false);
+	animatedSprite.setPosition(sf::Vector2f(screenDimensions / 2));
+
+	sf::Clock frameClock;
+
+	double speed = 100.0;
+	bool noKeyWasPressed = true;
+
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -51,164 +71,55 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-
-			if (event.type == sf::Event::KeyPressed)
-			{
-				
-				if (event.key.code == sf::Keyboard::A)
-				{
-					if (bob.getPosition().x == 0)
-					{
-						//not to go off edge
-					}
-					else
-					{
-						bob.move(sf::Vector2f(-50, 0));
-						bob.setTexture(bob_left);
-					}
-				}
-
-				if (event.key.code == sf::Keyboard::D)
-				{
-					if (bob.getPosition().x == 700)
-					{
-						//not to go off edge
-					}
-					else
-					{
-						bob.move(sf::Vector2f(50, 0));
-						bob.setTexture(bob_right);
-					}
-				}
-
-				if (event.key.code == sf::Keyboard::S)
-				{
-					if (bob.getPosition().y == 475)
-					{
-						//not to go off edge
-					}
-					else
-					{
-						bob.move(sf::Vector2f(0, 50));
-						bob.setTexture(bob_front);
-					}
-
-				}
-
-				if (event.key.code == sf::Keyboard::W)
-				{
-					if (bob.getPosition().y == -25)
-					{
-						//not to go off edge
-					}
-					else
-					{
-						bob.move(sf::Vector2f(0, -50));
-						bob.setTexture(bob_back);
-					}
-					
-				}
-
-				if (event.key.code == sf::Keyboard::Space)
-				{
-					//attack?
-				}
-			}
-			if (bob.getPosition().x == 600 && bob.getPosition().y == 225)
-			{
-				//encounter
-				switch (currentfloor)
-				{
-				case 1: 
-					//enemy1
-					break;
-				case 2:
-					//enemy2
-					break;
-				case 3:
-					//enemy3
-					break;
-				case 4:
-					//enemy4
-					break;
-				case 5:
-					//bigboyboss
-					break;
-				default:
-					break;
-				}
-			}
-
-			if (bob.getPosition().x == 650 && bob.getPosition().y == 225)
-			{
-				//chest
-				switch (currentfloor)
-				{
-				case 1:
-					//shield
-					break;
-				case 2:
-					//dagger
-					break;
-				case 3:
-					//elixer
-					break;
-				case 4:
-					//display choices (3)
-					cin >> choice;
-					//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) //plus health
-					//{
-					//	Item extrah(5, 0, 0, "Potion");
-					//}
-					//else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) //plus strength
-					//{
-					//	Item extras(0, 5, 0, "CrossBow");
-					//}
-					//else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) //plus defense
-					//{
-					//	Item extrad(0, 0, 5, "Helmet");
-					//}
-					break;
-				case 5:
-					//special somethinng - end of game - close window.
-					break;
-				default:
-					break;
-				}
-			}
-
-			if (bob.getPosition().x == 700 && bob.getPosition().y == 225)
-			{
-				if (currentfloor == 5)
-				{
-					//end game
-				}
-				else
-				{
-					currentfloor++;
-					//next floor: change bob position
-				}
-			}
+			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+				window.close();
 		}
 
+		sf::Time frameTime = frameClock.restart();
+
+		// if a key was pressed set the correct animation and move correctly
+		sf::Vector2f movement(0.f, 0.f);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		{
+			currentAnimation = &walkingAnimationLeft;
+			movement.y -= speed;
+			noKeyWasPressed = false;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		{
+			currentAnimation = &walkingAnimationLeft;
+			movement.y += speed;
+			noKeyWasPressed = false;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		{
+			currentAnimation = &walkingAnimationRight;
+			movement.x -= speed;
+			noKeyWasPressed = false;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		{
+			currentAnimation = &walkingAnimationLeft;
+			movement.x += speed;
+			noKeyWasPressed = false;
+		}
+		animatedSprite.play(*currentAnimation);
+		animatedSprite.move(movement * frameTime.asSeconds());
+
+		// if no key was pressed stop the animation
+		if (noKeyWasPressed)
+		{
+			animatedSprite.stop();
+		}
+		noKeyWasPressed = true;
+
+		// update AnimatedSprite
+		animatedSprite.update(frameTime);
+
+		// draw
 		window.clear();
-
-
-		window.draw(bob);
-		//window.draw(bigboy);
-		//window.draw(c1);
-		//window.draw(c2);
-		//window.draw(c3);
-		//window.draw(c4);
-		//window.draw(c5);
-		//window.draw(f1);
-		//window.draw(f2);
-		//window.draw(f3);
-		//window.draw(f4);
-		//window.draw(f5);
-
-
+		window.draw(animatedSprite);
 		window.display();
-		
 	}
 }
+

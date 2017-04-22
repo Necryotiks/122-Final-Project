@@ -9,6 +9,7 @@
 #include <fstream>
 #include <sstream>
 #include <SFML/Graphics.hpp>
+#include "AnimatedSprite.hpp"
 
 using std::cout;
 using std::cin;

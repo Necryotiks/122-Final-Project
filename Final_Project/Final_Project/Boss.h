@@ -13,7 +13,7 @@ public:
 
 private:
 	int health;
-	int defense;
+	string name;
 	int strength;
 };
 
