@@ -65,6 +65,9 @@ int main()
 	walkingAnimationUp.addFrame(sf::IntRect(32, 96, 32, 32));
 	walkingAnimationUp.addFrame(sf::IntRect(0, 96, 32, 32));
 
+	Animation DeathAnimation;
+	DeathAnimation.setSpriteSheet(texture);
+	DeathAnimation.addFrame(sf::IntRect(32, 160, 32, 32));//finish death anims
 	auto * currentAnimation = &walkingAnimationDown;
 
 	// set up AnimatedSprite
