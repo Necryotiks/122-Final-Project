@@ -6,14 +6,14 @@
 class Boss : public Creature
 {
 public:
-	Boss(string newname, int newHP, int newSTR);
+	Boss(string newname, int newHP, int newSTR, int newArmor);
 	~Boss();
 
 	//all stats derived from Creature.h
+	int getArmorValue();
+	void dmgCalc(int incDamage) override;
 
 private:
-	int health;
-	string name;
-	int strength;
+	int armorval;
 };
 

@@ -1,6 +1,6 @@
 #include "PlayerCharacter.h"
 
-PlayerCharacter::PlayerCharacter()
+PlayerCharacter::PlayerCharacter(string newname, int newHP, int newSTR): Creature(newname,newHP,newSTR)
 {
 	mana = 100;
 	currentMana = 100;
@@ -32,18 +32,7 @@ int PlayerCharacter::getCurrentMana() const
 	return currentMana;
 }
 
-int PlayerCharacter::getHP() const
-{
-	return hp;
-}
-
-void PlayerCharacter::setHP(int & value)
-{
-	hp = value;
-	currentHP = value;
-}
-
-int PlayerCharacter::getCurrentHP() const
+int PlayerCharacter::getCurrentHP()
 {
 	return currentHP;
 }
@@ -69,7 +58,7 @@ int PlayerCharacter::getCurrentLVL() const
 	return currentLVL;
 }
 
-Inventory & PlayerCharacter::getINV()//view inventory
-{
-	return gear;
-}
+//Inventory & PlayerCharacter::getINV()//view inventory
+//{
+//	return gear;
+//}

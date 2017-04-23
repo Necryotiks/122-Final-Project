@@ -6,21 +6,24 @@ class Creature
 {
 public:
 	Creature(string newname, int newHP, int newSTR);
-	~Creature();
+	virtual ~Creature();
 
-	int get_health() const;
-	void set_health(int temp);
+	int getHP() const;
+	void setHP(int &value);
 
-	int get_strength();
+	virtual int getCurrentHP();
+	void setCurrentHP(int temp);
+
+	int get_strength() const;
 	void set_strength(int temp);
 
-	//int get_defense();
-	//void set_defense(int temp);
 
-private:
+	virtual void dmgCalc(int incDamage);
+
+protected:
 	string name;
 	int hp;
+	int currentHP;
 	int strength;
-	//int defense;
 };
 

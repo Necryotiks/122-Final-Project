@@ -16,22 +16,37 @@ Creature::~Creature()
 
 
 
-int Creature::get_health() const
+int Creature::getHP() const
 {
 	return hp;
 }
-void Creature::set_health(int temp)
+void Creature::setHP(int &value)
 {
-	hp = temp;
+	hp = value;
 }
 
-int Creature::get_strength()
+int Creature::getCurrentHP()
+{
+	return currentHP;
+}
+
+void Creature::setCurrentHP(int temp)
+{
+	currentHP = temp;
+}
+
+int Creature::get_strength() const
 {
 	return strength;
 }
 void Creature::set_strength(int temp)
 {
 	strength = temp;
+}
+
+void Creature::dmgCalc(int incDamage)
+{
+	hp = hp - incDamage;
 }
 
 //int Creature::get_defense()

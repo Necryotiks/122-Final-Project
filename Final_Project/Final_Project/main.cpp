@@ -1,5 +1,4 @@
 #include "Source.h"
-#include "Bob.h"
 #include "Boss.h"
 #include "Creature.h"
 #include "Encounter.h"
@@ -11,6 +10,11 @@
 
 int main()
 {
+	sf::Font font;
+	if(!font.loadFromFile("font1.ttf"))
+	{
+		//error
+	}
 	// setup window
 	sf::Vector2i screenDimensions(800, 600);
 	sf::RenderWindow window(sf::VideoMode(screenDimensions.x, screenDimensions.y), "The Perils of Aeliorn: Mage's Tower Ascent");
