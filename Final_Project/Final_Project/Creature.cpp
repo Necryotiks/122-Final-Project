@@ -1,12 +1,13 @@
 #include "Creature.h"
 
 
-Creature::Creature(string newname, int newHP, int newSTR)
+Creature::Creature(string newname, int newHP, int newSTR, int XP)
 {
 	name = newname;
 	hp = newHP;
 	currentHP = hp;
 	strength = newSTR;
+	xpWorth = XP;
 }
 
 
@@ -47,7 +48,7 @@ void Creature::set_strength(int temp)
 
 void Creature::dmgCalc(int incDamage)
 {
-	hp = hp - incDamage;
+	currentHP = currentHP - incDamage;
 }
 
 int Creature::hitDmg() const
@@ -58,6 +59,11 @@ int Creature::hitDmg() const
 string Creature::getName() const
 {
 	return name;
+}
+
+int Creature::getXP() const
+{
+	return xpWorth;
 }
 
 //int Creature::get_defense()

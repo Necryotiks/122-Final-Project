@@ -13,7 +13,7 @@
 class PlayerCharacter : public Creature
 {
 public:
-	explicit PlayerCharacter(string newname = "Mithril Jackson", int newHP  =100, int newSTR = 10);
+	explicit PlayerCharacter(string newname = "Mithril Jackson", int newHP  =100, int newSTR = 10, int XP = 0);
 	~PlayerCharacter();
 	int getMana() const;
 	void setMana(int &value);
@@ -35,7 +35,7 @@ public:
 	void setMpot(int value);
 
 	int magicMissileDmg();//10 mana
-	int healHP();//25 mana
+	void healHP();//25 mana
 
 
 	//Inventory & getINV();

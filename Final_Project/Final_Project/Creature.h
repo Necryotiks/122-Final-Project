@@ -5,7 +5,7 @@
 class Creature
 {
 public:
-	Creature(string newname, int newHP, int newSTR);
+	Creature(string newname, int newHP, int newSTR,int XP);
 	virtual ~Creature();
 
 	int getHP() const;
@@ -18,15 +18,18 @@ public:
 	void set_strength(int temp);
 
 
-	virtual void dmgCalc(int incDamage);
-	int hitDmg() const;
+	virtual void dmgCalc(int incDamage);//incoming damage
+	int hitDmg() const;//outgoing damage
 
 	string getName() const;
+
+	int getXP() const;
 
 protected:
 	string name;
 	int hp;
 	int currentHP;
 	int strength;
+	int xpWorth;
 };
 

@@ -1,12 +1,12 @@
 #include "PlayerCharacter.h"
 
-PlayerCharacter::PlayerCharacter(string newname, int newHP, int newSTR): Creature(newname,newHP,newSTR)
+PlayerCharacter::PlayerCharacter(string newname, int newHP, int newSTR, int XP): Creature(newname,newHP,newSTR , XP)
 {
 	mana = 100;
 	currentMana = 100;
 	hp = 100;
 	currentHP = 100;
-	current_XP = 0;
+	current_XP = XP;
 	XP_to_next_LVL = 1000;
 	currentLVL = 1;
 	shekels = 0;//BROKE AS FUCK
@@ -97,10 +97,10 @@ int PlayerCharacter::magicMissileDmg()
 	return 2* currentLVL + 10;
 }
 
-int PlayerCharacter::healHP()
+void PlayerCharacter::healHP()
 {
 	currentMana = currentMana - 25;
-	return rand() % (10 * currentLVL)+1;
+	currentHP= rand() % (10 * currentLVL)+1;
 }
 
 //Inventory & PlayerCharacter::getINV()//view inventory
