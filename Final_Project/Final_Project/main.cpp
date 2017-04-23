@@ -67,7 +67,16 @@ int main()
 
 	Animation DeathAnimation;
 	DeathAnimation.setSpriteSheet(texture);
-	DeathAnimation.addFrame(sf::IntRect(32, 160, 32, 32));//finish death anims
+	DeathAnimation.addFrame(sf::IntRect(0, 128, 32, 32));//change death animation key
+	DeathAnimation.addFrame(sf::IntRect(32, 128, 32, 32));
+	DeathAnimation.addFrame(sf::IntRect(64, 128, 32, 32));
+	DeathAnimation.addFrame(sf::IntRect(96, 128, 32, 32));
+	DeathAnimation.addFrame(sf::IntRect(160, 128, 32, 32));
+	DeathAnimation.addFrame(sf::IntRect(192, 128, 32, 32));
+	DeathAnimation.addFrame(sf::IntRect(224, 128, 32, 32));
+	DeathAnimation.addFrame(sf::IntRect(256, 128, 32, 32));
+	DeathAnimation.addFrame(sf::IntRect(288, 128, 32, 32));
+
 	auto * currentAnimation = &walkingAnimationDown;
 
 	// set up AnimatedSprite
@@ -116,6 +125,11 @@ int main()
 		{
 			currentAnimation = &walkingAnimationLeft;
 			movement.x += speed;
+			noKeyWasPressed = false;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
+		{
+			currentAnimation = &DeathAnimation;
 			noKeyWasPressed = false;
 		}
 		animatedSprite.play(*currentAnimation);
