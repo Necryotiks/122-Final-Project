@@ -1,6 +1,8 @@
 #pragma once
 #include "Floor.h"
 
+
+
 class Tower
 {
 public:
@@ -9,6 +11,9 @@ public:
 
 	int get_floor();
 	void set_floor(int temp);
+
+protected:
+	sf::Texture mTileset;
 
 private:
 	int current_floor;

@@ -3,6 +3,7 @@
 
 Tower::Tower(int current)
 {
+	mTileset.loadFromFile("32x32.bmp");
 	current_floor = current;
 }
 

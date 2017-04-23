@@ -1,21 +1,13 @@
-#include "Floor.h"
-
-
-
-//Item Floor::get_chest()
-//{
-//	return chest;
-//}
-//void Floor::set_chest(Item temp)
-//{
-//	chest = temp;
-//}
+//#include "Floor.h"
 //
-//Creature Floor::get_enemy()
+//
+//
+//void Floor::playBgm()
 //{
-//	return enemy;
-//}
-//void Floor::set_enemy(Creature temp)
-//{
-//	enemy = temp;
+//	if (!mBgm.openFromFile(this->mBgmFileName)) //check for loading issues
+//	{
+//		std::cout << "Bad load." << std::endl; //error message
+//	}
+//	mBgm.setLoop(true); //loop entire time player is on the floor
+//	mBgm.play(); //start playing
 //}
