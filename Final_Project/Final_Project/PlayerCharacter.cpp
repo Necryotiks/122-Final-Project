@@ -91,6 +91,18 @@ void PlayerCharacter::setMpot(int value)
 	mana_potions += value;
 }
 
+int PlayerCharacter::magicMissileDmg()
+{
+	currentMana = currentMana - 10;
+	return 2* currentLVL + 10;
+}
+
+int PlayerCharacter::healHP()
+{
+	currentMana = currentMana - 25;
+	return rand() % (10 * currentLVL)+1;
+}
+
 //Inventory & PlayerCharacter::getINV()//view inventory
 //{
 //	return gear;

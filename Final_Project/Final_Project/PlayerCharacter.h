@@ -34,6 +34,9 @@ public:
 	int getMpot() const;
 	void setMpot(int value);
 
+	int magicMissileDmg();//10 mana
+	int healHP();//25 mana
+
 
 	//Inventory & getINV();
 

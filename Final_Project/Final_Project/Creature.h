@@ -19,6 +19,9 @@ public:
 
 
 	virtual void dmgCalc(int incDamage);
+	int hitDmg() const;
+
+	string getName() const;
 
 protected:
 	string name;

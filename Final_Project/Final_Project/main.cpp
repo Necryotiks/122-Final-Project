@@ -41,7 +41,7 @@ int main()
 	walkingAnimationDown.setSpriteSheet(texture);
 	walkingAnimationDown.addFrame(sf::IntRect(32, 0, 32, 32));
 	walkingAnimationDown.addFrame(sf::IntRect(64, 0, 32, 32));
-	walkingAnimationDown.addFrame(sf::IntRect(32, 0, 32, 32));
+	walkingAnimationDown.addFrame(sf::IntRect(32, 0, 32, 32));//finish anims.
 	walkingAnimationDown.addFrame(sf::IntRect(0, 0, 32, 32));
 
 	Animation walkingAnimationLeft;
@@ -90,6 +90,7 @@ int main()
 
 	while (window.isOpen())
 	{
+		srand(time(nullptr));
 		sf::Event event;
 		while (window.pollEvent(event))
 		{

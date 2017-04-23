@@ -5,6 +5,7 @@ Creature::Creature(string newname, int newHP, int newSTR)
 {
 	name = newname;
 	hp = newHP;
+	currentHP = hp;
 	strength = newSTR;
 }
 
@@ -47,6 +48,16 @@ void Creature::set_strength(int temp)
 void Creature::dmgCalc(int incDamage)
 {
 	hp = hp - incDamage;
+}
+
+int Creature::hitDmg() const
+{
+	return rand() % strength;
+}
+
+string Creature::getName() const
+{
+	return name;
 }
 
 //int Creature::get_defense()
