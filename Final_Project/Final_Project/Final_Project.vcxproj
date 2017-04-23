@@ -153,6 +153,7 @@
     <ClInclude Include="Floor.h" />
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="Source.h" />
+    <ClInclude Include="TextBlock.h" />
     <ClInclude Include="Tower.h" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +168,12 @@
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Tower.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Level1.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="font1.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -10,6 +10,7 @@
 #include <sstream>
 #include <SFML/Graphics.hpp>
 #include "AnimatedSprite.hpp"
+#define Charsize 20
 
 using std::cout;
 using std::cin;

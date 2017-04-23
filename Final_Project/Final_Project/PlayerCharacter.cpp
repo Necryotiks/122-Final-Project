@@ -9,6 +9,9 @@ PlayerCharacter::PlayerCharacter(string newname, int newHP, int newSTR): Creatur
 	current_XP = 0;
 	XP_to_next_LVL = 1000;
 	currentLVL = 1;
+	shekels = 0;//BROKE AS FUCK
+	hp_potions = 0;
+	mana_potions = 0;
 }
 
 PlayerCharacter::~PlayerCharacter()
@@ -56,6 +59,36 @@ int PlayerCharacter::getNextXP() const
 int PlayerCharacter::getCurrentLVL() const
 {
 	return currentLVL;
+}
+
+int PlayerCharacter::getShekels() const
+{
+	return shekels;
+}
+
+void PlayerCharacter::setShekels(int val)
+{
+	shekels += val;
+}
+
+int PlayerCharacter::getHPpot() const
+{
+	return hp_potions;
+}
+
+void PlayerCharacter::setHPpot(int value)
+{
+	hp_potions += value;
+}
+
+int PlayerCharacter::getMpot() const
+{
+	return mana_potions;
+}
+
+void PlayerCharacter::setMpot(int value)
+{
+	mana_potions += value;
 }
 
 //Inventory & PlayerCharacter::getINV()//view inventory

@@ -1,10 +1,8 @@
 ﻿  main.cpp
-c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(63): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(89): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(95): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(101): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(107): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-  PlayerCharacter.cpp
-  Generating Code...
+c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(71): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(97): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(103): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(109): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(115): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
   Final_Project.vcxproj -> C:\Users\Necryotiks\Documents\Git_Repos\122-Final-Project\Final_Project\Debug\Final_Project.exe
   Final_Project.vcxproj -> C:\Users\Necryotiks\Documents\Git_Repos\122-Final-Project\Final_Project\Debug\Final_Project.pdb (Full PDB)

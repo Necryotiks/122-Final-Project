@@ -22,6 +22,15 @@ public:
 		this->setStyle(sf::Text::Regular);
 		this->setPosition(pos);
 	}
+	TextBlock(int size, string contents,string cont2,sf::Vector2f const &pos, sf::Font &font)
+	{
+		this->setCharacterSize(size);
+		this->setFont(font);
+		string contents1 = contents+" "+cont2;
+		this->setString(contents1);
+		this->setStyle(sf::Text::Regular);
+		this->setPosition(pos);
+	}
 		//testlines
 	//TextBlock HP(24, "Health", sf::Vector2f(32,32), font);
 	//window.draw(HP);
