@@ -45,6 +45,9 @@
     <ClInclude Include="TextBlock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -80,6 +83,9 @@
     <ClCompile Include="AnimatedSprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Level1.csv">
@@ -90,5 +96,39 @@
     <Font Include="font1.ttf">
       <Filter>Resource Files</Filter>
     </Font>
+    <Font Include="Origicide.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Destinydark.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Level1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Level2.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Level3.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Level4.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Level5.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Level8.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Level12.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="SFML dependencies.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

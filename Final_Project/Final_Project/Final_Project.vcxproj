@@ -94,7 +94,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\Necryotiks\Documents\Git_Repos\122-Final-Project\Final_Project\SFML-2.4.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-window-s-d.lib;sfml-system-s-d.lib;opengl32.lib;freetype.lib;jpeg.lib;sfml-graphics-s-d.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-window-s-d.lib;sfml-system-s-d.lib;opengl32.lib;freetype.lib;jpeg.lib;sfml-graphics-s-d.lib;winmm.lib;gdi32.lib;sfml-audio-s-d.lib	;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -154,6 +154,7 @@
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="Source.h" />
     <ClInclude Include="TextBlock.h" />
+    <ClInclude Include="Tile.h" />
     <ClInclude Include="Tower.h" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +168,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Tower.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +176,20 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="font1.ttf" />
+    <Font Include="Origicide.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Destinydark.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Level1.txt" />
+    <Text Include="Level12.txt" />
+    <Text Include="Level2.txt" />
+    <Text Include="Level3.txt" />
+    <Text Include="Level4.txt" />
+    <Text Include="Level5.txt" />
+    <Text Include="Level8.txt" />
+    <Text Include="SFML dependencies.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
