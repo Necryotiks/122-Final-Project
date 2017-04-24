@@ -36,6 +36,10 @@ int main()
 		return 1;
 	}
 
+	Tower mageAscent;
+	
+
+
 	// set up the animations for all four directions (set spritesheet and push frames)
 	Animation walkingAnimationDown;
 	Animation walkingAnimationLeft;
@@ -261,6 +265,7 @@ int main()
 				// draw
 				window.clear();
 
+				mageAscent.getCurrentFloor()->printFloor(window);
 				window.draw(animatedSprite);
 				window.draw(manaBox);
 				window.draw(hpBox);
