@@ -1,10 +1,22 @@
-﻿  main.cpp
-c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\floor.h(65): warning C4065: switch statement contains 'default' but no 'case' labels
-c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(105): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(115): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(132): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(138): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(144): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(150): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+﻿  Tower.cpp
+  Tile.cpp
+  Source.cpp
+  PlayerCharacter.cpp
+  main.cpp
+c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(95): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(105): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(122): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(128): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(134): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\main.cpp(140): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  Floor.cpp
+c:\users\necryotiks\documents\git_repos\122-final-project\final_project\final_project\floor.cpp(41): warning C4065: switch statement contains 'default' but no 'case' labels
+  Events.cpp
+  Encounter.cpp
+  Creature.cpp
+  Boss.cpp
+  Animation.cpp
+  AnimatedSprite.cpp
+  Generating Code...
   Final_Project.vcxproj -> C:\Users\Necryotiks\Documents\Git_Repos\122-Final-Project\Final_Project\Debug\Final_Project.exe
   Final_Project.vcxproj -> C:\Users\Necryotiks\Documents\Git_Repos\122-Final-Project\Final_Project\Debug\Final_Project.pdb (Full PDB)

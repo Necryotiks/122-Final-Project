@@ -88,11 +88,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Level1.csv">
-      <Filter>Resource Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Font Include="font1.ttf">
       <Filter>Resource Files</Filter>
     </Font>
@@ -128,6 +123,21 @@
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="SFML dependencies.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Level6.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Level7.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Level11.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Level9.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Level10.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

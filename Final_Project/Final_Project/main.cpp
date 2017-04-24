@@ -231,7 +231,7 @@ int main()
 							//get image here.
 							deathWindow.display();
 						}
-						//exit
+						exit(1);
 					}
 					TextBlock playerName(Charsize, "Mithril Jackson", sf::Vector2f(0, 0), font);
 					TextBlock CombatHpBox(Charsize, "Health:", std::to_string(Player.getCurrentHP()), std::to_string(Player.getHP()), sf::Vector2f(0, Charsize), font);

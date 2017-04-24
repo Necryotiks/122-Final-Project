@@ -172,9 +172,6 @@
     <ClCompile Include="Tower.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Level1.csv" />
-  </ItemGroup>
-  <ItemGroup>
     <Font Include="font1.ttf" />
     <Font Include="Origicide.ttf" />
   </ItemGroup>
@@ -183,12 +180,17 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Level1.txt" />
+    <Text Include="Level10.txt" />
+    <Text Include="Level11.txt" />
     <Text Include="Level12.txt" />
     <Text Include="Level2.txt" />
     <Text Include="Level3.txt" />
     <Text Include="Level4.txt" />
     <Text Include="Level5.txt" />
+    <Text Include="Level6.txt" />
+    <Text Include="Level7.txt" />
     <Text Include="Level8.txt" />
+    <Text Include="Level9.txt" />
     <Text Include="SFML dependencies.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
