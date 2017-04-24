@@ -36,10 +36,28 @@ int main()
 		return 1;
 	}
 
+<<<<<<< HEAD
 	Tower mageAscent;
 	
 
 
+=======
+
+
+
+	/*Floor Test Code*/
+	sf::Image image;
+	image.loadFromFile("32x32.bmp");
+	image.createMaskFromColor(sf::Color::Black);
+	sf::Texture texture2;
+	texture2.loadFromImage(image);
+
+	Floor testFloor("Level5.txt", "Music\\Early Floor Music\\Ala Flair.ogg", texture2);
+
+
+	/*End Floor Test*/
+
+>>>>>>> origin/master
 	// set up the animations for all four directions (set spritesheet and push frames)
 	Animation walkingAnimationDown;
 	Animation walkingAnimationLeft;
@@ -149,6 +167,7 @@ int main()
 			Creature testCreep("AndyBot", 50, 50, 100);
 			sf::RenderWindow combatWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "Fight!", sf::Style::Titlebar);
 			combatWindow.setFramerateLimit(60);
+			//set combat resolve time
 			while (combatWindow.isOpen())
 			{
 				sf::Event combatEvent;
@@ -167,7 +186,7 @@ int main()
 						}//else keep fighting!
 						Player.dmgCalc(testCreep.hitDmg());//creep attacks, player takes damage
 					}
-					if (combatEvent.type == sf::Event::KeyPressed && combatEvent.key.code == (sf::Keyboard::Num2))
+					if (combatEvent.type == sf::Event::KeyPressed && combatEvent.key.code == sf::Keyboard::Num2)
 					{	//Magic attack
 						if (Player.getCurrentMana() >= 10)
 						{
@@ -179,13 +198,13 @@ int main()
 							Player.dmgCalc(testCreep.hitDmg());//creep attacks, player takes damage
 						}
 					}
-					if (combatEvent.type == sf::Event::KeyPressed && combatEvent.key.code == (sf::Keyboard::Num3))
+					if (combatEvent.type == sf::Event::KeyPressed && combatEvent.key.code == sf::Keyboard::Num3)
 					{	//Heal
 						if (Player.getCurrentMana() >= 25)
 						{
 							Player.healHP();
-
-							Player.dmgCalc(testCreep.hitDmg());//creep attacks, player takes damage
+							Player.dmgCalc(testCreep.hitDmg());
+							//creep attacks, player takes damage
 
 						}
 					}
@@ -194,6 +213,21 @@ int main()
 
 					if (Player.getCurrentHP() <= 0)
 					{
+						sf::Image DIMG;
+						DIMG.loadFromFile("Destinydark.jpg");
+						DIMG.createMaskFromColor(sf::Color::Black);
+						sf::Texture XV;
+						XV.loadFromImage(DIMG);
+						//DIMG.setSmooth(true);
+						sf::Sprite UDED;
+						UDED.setTexture(XV);
+						UDED.setScale(.75, .75);
+						UDED.setPosition(195, 0);
+						sf::Font DFONT;
+						if(!DFONT.loadFromFile("Origicide.ttf"))
+						{
+							//throw error
+						}
 						//death animation, you die
 						combatWindow.close();
 						sf::RenderWindow deathWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "RIP", sf::Style::Titlebar);
@@ -205,13 +239,16 @@ int main()
 								if (deathEvent.type == sf::Event::KeyPressed && deathEvent.key.code == sf::Keyboard::Escape)
 									deathWindow.close();
 							}
-							TextBlock RIP(Charsize * 5, "YOU DIED", sf::Vector2f(100, 200), font);
+							TextBlock RIP(Charsize * 5, "YOU DIED", sf::Vector2f(200, 400), DFONT);
+							RIP.setFillColor(sf::Color::Red);
 							deathWindow.clear();
 							deathWindow.draw(RIP);
+							deathWindow.draw(UDED);
 							deathWindow.draw(tipBox);
+							//get image here.
 							deathWindow.display();
 						}
-
+						//exit
 					}
 					TextBlock playerName(Charsize, "Mithril Jackson", sf::Vector2f(0, 0), font);
 					TextBlock CombatHpBox(Charsize, "Health:", std::to_string(Player.getCurrentHP()), std::to_string(Player.getHP()), sf::Vector2f(0, Charsize), font);
@@ -265,7 +302,25 @@ int main()
 				// draw
 				window.clear();
 
+<<<<<<< HEAD
 				mageAscent.getCurrentFloor()->printFloor(window);
+=======
+				/*Floor Test Code*/
+				for (auto x = 0; x < FLOOR_WIDTH; x++)
+				{
+					for (auto y = 0; y < FLOOR_HEIGHT; y++)
+					{
+						if (testFloor.getTile(x, y)->getType() > STAIRS)
+						{
+							testFloor.getFloorTile()->setPosition(static_cast<float>(x * TILE_SIZE), static_cast<float>(y * TILE_SIZE + MAP_OFFSET));
+							window.draw(*testFloor.getFloorTile());
+						}
+						window.draw(*testFloor.getTile(x, y));
+					}
+				}
+				/*End Floor Test*/
+
+>>>>>>> origin/master
 				window.draw(animatedSprite);
 				window.draw(manaBox);
 				window.draw(hpBox);
