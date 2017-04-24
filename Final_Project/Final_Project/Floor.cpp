@@ -7,11 +7,15 @@ using std::string;
 Floor::Floor(string floorFile, string musicFile, sf::Texture & tileSet)
 {
 	mBgmFileName = musicFile;
+	if (!mBgm.openFromFile(mBgmFileName)) //check for loading issues
+	{
+		std::cout << "Bad load." << std::endl; //error message
+	}
+	mBgm.setLoop(true); //loop entire time player is on the floor
+
 	mFloor = new Tile(FLOOR, tileSet);
 	mWall = new Tile(WALL, tileSet);
 	mStairs = new Tile(STAIRS, tileSet);
-
-	playBgm();
 
 	//open file
 	openCsv(floorFile);
@@ -52,7 +56,7 @@ Floor::Floor(string floorFile, string musicFile, sf::Texture & tileSet)
 
 Floor::~Floor()
 {
-	mBgm.stop();
+		mBgm.stop();
 }
 
 void Floor::printFloor(sf::RenderWindow & window)
@@ -73,12 +77,8 @@ void Floor::printFloor(sf::RenderWindow & window)
 
 void Floor::playBgm()
 {
-	if (!mBgm.openFromFile(mBgmFileName)) //check for loading issues
-	{
-		std::cout << "Bad load." << std::endl; //error message
-	}
-	mBgm.setLoop(true); //loop entire time player is on the floor
-	mBgm.play(); //start playing
+	if (mBgm.getStatus() != sf::Music::Playing)
+		mBgm.play(); //start playing
 }
 
 Tile *& Floor::getTile(int x, int y)

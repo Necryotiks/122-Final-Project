@@ -12,7 +12,7 @@
 //
 ///*End Floor Test*/
 
-#define NUM_FLOORS 8 //total number of floors in this tower
+#define NUM_FLOORS 12 //total number of floors in this tower
 
 class Tower
 {

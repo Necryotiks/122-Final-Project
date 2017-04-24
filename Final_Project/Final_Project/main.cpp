@@ -47,47 +47,47 @@ int main()
 	Animation walkingAnimationRight;
 	Animation walkingAnimationUp;
 	walkingAnimationDown.setSpriteSheet(texture);
-	walkingAnimationDown.addFrame(sf::IntRect(32, 0, 32, 32));
-	walkingAnimationDown.addFrame(sf::IntRect(64, 0, 32, 32));
-	walkingAnimationDown.addFrame(sf::IntRect(32, 0, 32, 32));//finish anims.
-	walkingAnimationDown.addFrame(sf::IntRect(0, 0, 32, 32));
+	walkingAnimationDown.addFrame(sf::IntRect(TILE_SIZE, 0, TILE_SIZE, TILE_SIZE));
+	walkingAnimationDown.addFrame(sf::IntRect((2 * TILE_SIZE), 0, TILE_SIZE, TILE_SIZE));
+	walkingAnimationDown.addFrame(sf::IntRect(TILE_SIZE, 0, TILE_SIZE, TILE_SIZE));//finish anims.
+	walkingAnimationDown.addFrame(sf::IntRect(0, 0, TILE_SIZE, TILE_SIZE));
 
 
 	walkingAnimationLeft.setSpriteSheet(texture);
-	walkingAnimationLeft.addFrame(sf::IntRect(32, 32, 32, 32));
-	walkingAnimationLeft.addFrame(sf::IntRect(32, 64, 32, 32));
-	walkingAnimationLeft.addFrame(sf::IntRect(64, 32, 32, 32));
-	walkingAnimationLeft.addFrame(sf::IntRect(32, 64, 32, 32));
-	walkingAnimationLeft.addFrame(sf::IntRect(32, 64, 32, 32));
-	walkingAnimationLeft.addFrame(sf::IntRect(64, 64, 32, 32));
-	walkingAnimationLeft.addFrame(sf::IntRect(32, 64, 32, 32));
-	walkingAnimationLeft.addFrame(sf::IntRect(0, 64, 32, 32));
+	walkingAnimationLeft.addFrame(sf::IntRect(TILE_SIZE, TILE_SIZE, TILE_SIZE, TILE_SIZE));
+	walkingAnimationLeft.addFrame(sf::IntRect(TILE_SIZE, (2 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
+	walkingAnimationLeft.addFrame(sf::IntRect((2 * TILE_SIZE), TILE_SIZE, TILE_SIZE, TILE_SIZE));
+	walkingAnimationLeft.addFrame(sf::IntRect(TILE_SIZE, (2 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
+	walkingAnimationLeft.addFrame(sf::IntRect(TILE_SIZE, (2 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
+	walkingAnimationLeft.addFrame(sf::IntRect((2 * TILE_SIZE), (2 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
+	walkingAnimationLeft.addFrame(sf::IntRect(TILE_SIZE, (2 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
+	walkingAnimationLeft.addFrame(sf::IntRect(0, (2 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
 
 
 	walkingAnimationRight.setSpriteSheet(texture);
-	walkingAnimationRight.addFrame(sf::IntRect(32, 64, 32, 32));
-	walkingAnimationRight.addFrame(sf::IntRect(64, 64, 32, 32));
-	walkingAnimationRight.addFrame(sf::IntRect(32, 64, 32, 32));
-	walkingAnimationRight.addFrame(sf::IntRect(0, 64, 32, 32));
+	walkingAnimationRight.addFrame(sf::IntRect(TILE_SIZE, (2 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
+	walkingAnimationRight.addFrame(sf::IntRect((2 * TILE_SIZE), (2 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
+	walkingAnimationRight.addFrame(sf::IntRect(TILE_SIZE, (2 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
+	walkingAnimationRight.addFrame(sf::IntRect(0, (2 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
 
 
 	walkingAnimationUp.setSpriteSheet(texture);
-	walkingAnimationUp.addFrame(sf::IntRect(32, 96, 32, 32));
-	walkingAnimationUp.addFrame(sf::IntRect(64, 96, 32, 32));
-	walkingAnimationUp.addFrame(sf::IntRect(32, 96, 32, 32));
-	walkingAnimationUp.addFrame(sf::IntRect(0, 96, 32, 32));
+	walkingAnimationUp.addFrame(sf::IntRect(TILE_SIZE, (3 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
+	walkingAnimationUp.addFrame(sf::IntRect((2 * TILE_SIZE), (3 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
+	walkingAnimationUp.addFrame(sf::IntRect(TILE_SIZE, (3 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
+	walkingAnimationUp.addFrame(sf::IntRect(0, (3 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
 
 	Animation DeathAnimation;
 	DeathAnimation.setSpriteSheet(texture);
-	DeathAnimation.addFrame(sf::IntRect(0, 128, 32, 32));//change death animation key
-	DeathAnimation.addFrame(sf::IntRect(32, 128, 32, 32));
-	DeathAnimation.addFrame(sf::IntRect(64, 128, 32, 32));
-	DeathAnimation.addFrame(sf::IntRect(96, 128, 32, 32));
-	DeathAnimation.addFrame(sf::IntRect(160, 128, 32, 32));
-	DeathAnimation.addFrame(sf::IntRect(192, 128, 32, 32));
-	DeathAnimation.addFrame(sf::IntRect(224, 128, 32, 32));
-	DeathAnimation.addFrame(sf::IntRect(256, 128, 32, 32));
-	DeathAnimation.addFrame(sf::IntRect(288, 128, 32, 32));
+	DeathAnimation.addFrame(sf::IntRect(0, (4 * TILE_SIZE), TILE_SIZE, TILE_SIZE));//change death animation key
+	DeathAnimation.addFrame(sf::IntRect(TILE_SIZE, (4 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
+	DeathAnimation.addFrame(sf::IntRect((2 * TILE_SIZE), (4 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
+	DeathAnimation.addFrame(sf::IntRect((3 * TILE_SIZE), (4 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
+	DeathAnimation.addFrame(sf::IntRect((5 * TILE_SIZE), (4 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
+	DeathAnimation.addFrame(sf::IntRect((6 * TILE_SIZE), (4 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
+	DeathAnimation.addFrame(sf::IntRect((7 * TILE_SIZE), (4 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
+	DeathAnimation.addFrame(sf::IntRect((8 * TILE_SIZE), (4 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
+	DeathAnimation.addFrame(sf::IntRect((9 * TILE_SIZE), (4 * TILE_SIZE), TILE_SIZE, TILE_SIZE));
 
 	auto * currentAnimation = &walkingAnimationDown;
 
@@ -294,5 +294,6 @@ int main()
 				window.draw(shekelBox);
 				window.draw(tipBox);
 				window.display();
+				mageAscent.getCurrentFloor()->playBgm();
 			}
 		}
