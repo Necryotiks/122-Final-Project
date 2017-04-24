@@ -12,6 +12,7 @@
 #include "AnimatedSprite.hpp"
 #include <ctime>
 #include <cstdlib>
+#include <Windows.h>
 #define Charsize 20
 
 using std::cout;
