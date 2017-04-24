@@ -121,6 +121,7 @@ int main()
 			currentAnimation = &walkingAnimationLeft;
 			movement.y -= speed;
 			noKeyWasPressed = false;
+			mageAscent.nextFloor();
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
