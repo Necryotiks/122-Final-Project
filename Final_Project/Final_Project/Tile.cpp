@@ -75,6 +75,3 @@ void Tile::setTileState (bool newInteract)
 {
 	mCanInteract = newInteract;
 }
-
-
-
