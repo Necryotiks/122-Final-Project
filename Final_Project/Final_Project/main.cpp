@@ -10,14 +10,14 @@
 int main()
 {
 	sf::Font font;
-	
-	if(!font.loadFromFile("font1.ttf"))
+
+	if (!font.loadFromFile("font1.ttf"))
 	{
 		//will throw error
 	}
 	PlayerCharacter Player;
 	TextBlock hpBox(Charsize, "Health:", std::to_string(Player.getCurrentHP()), std::to_string(Player.getHP()), sf::Vector2f(0, 0), font);
-	TextBlock manaBox(Charsize, "Mana:" ,std::to_string(Player.getCurrentMana()), std::to_string(Player.getMana()), sf::Vector2f(150, 0), font);
+	TextBlock manaBox(Charsize, "Mana:", std::to_string(Player.getCurrentMana()), std::to_string(Player.getMana()), sf::Vector2f(150, 0), font);
 	TextBlock xpBox(Charsize, "XP:", std::to_string(Player.getCurrentXP()), std::to_string(Player.getNextXP()), sf::Vector2f(150, Charsize), font);
 	TextBlock lvlBox(Charsize, "LVL:", std::to_string(Player.getCurrentLVL()), sf::Vector2f(0, Charsize), font);
 	TextBlock shekelBox(Charsize, "Shekels:", std::to_string(Player.getShekels()), sf::Vector2f(290, 0), font);
@@ -47,7 +47,7 @@ int main()
 	walkingAnimationDown.addFrame(sf::IntRect(32, 0, 32, 32));//finish anims.
 	walkingAnimationDown.addFrame(sf::IntRect(0, 0, 32, 32));
 
-	
+
 	walkingAnimationLeft.setSpriteSheet(texture);
 	walkingAnimationLeft.addFrame(sf::IntRect(32, 32, 32, 32));
 	walkingAnimationLeft.addFrame(sf::IntRect(32, 64, 32, 32));
@@ -58,14 +58,14 @@ int main()
 	walkingAnimationLeft.addFrame(sf::IntRect(32, 64, 32, 32));
 	walkingAnimationLeft.addFrame(sf::IntRect(0, 64, 32, 32));
 
-	
+
 	walkingAnimationRight.setSpriteSheet(texture);
 	walkingAnimationRight.addFrame(sf::IntRect(32, 64, 32, 32));
 	walkingAnimationRight.addFrame(sf::IntRect(64, 64, 32, 32));
 	walkingAnimationRight.addFrame(sf::IntRect(32, 64, 32, 32));
 	walkingAnimationRight.addFrame(sf::IntRect(0, 64, 32, 32));
 
-	
+
 	walkingAnimationUp.setSpriteSheet(texture);
 	walkingAnimationUp.addFrame(sf::IntRect(32, 96, 32, 32));
 	walkingAnimationUp.addFrame(sf::IntRect(64, 96, 32, 32));
@@ -140,30 +140,134 @@ int main()
 			currentAnimation = &DeathAnimation;
 			noKeyWasPressed = false;
 		}
-		animatedSprite.play(*currentAnimation);
-		animatedSprite.move(movement * frameTime.asSeconds());
-
-		// if no key was pressed stop the animation
-		if (noKeyWasPressed)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
 		{
-			animatedSprite.stop();
+			Creature testCreep("AndyBot", 50, 50, 100);
+			sf::RenderWindow combatWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "Fight!", sf::Style::Titlebar);
+			combatWindow.setFramerateLimit(60);
+			while (combatWindow.isOpen())
+			{
+				sf::Event combatEvent;
+				while (combatWindow.pollEvent(combatEvent))
+				{
+					if (combatEvent.type == sf::Event::Closed)
+						combatWindow.close();
+					if (combatEvent.type == sf::Event::KeyPressed && combatEvent.key.code == sf::Keyboard::Escape)
+						combatWindow.close();
+					if (combatEvent.type == sf::Event::KeyPressed && combatEvent.key.code == sf::Keyboard::Num1)
+					{	//Melee attack
+						testCreep.dmgCalc(Player.hitDmg());//player attacks creep, creep takes damage
+						if (testCreep.getCurrentHP() <= 0)
+						{
+							combatWindow.close();
+						}//else keep fighting!
+						Player.dmgCalc(testCreep.hitDmg());//creep attacks, player takes damage
+					}
+					if (combatEvent.type == sf::Event::KeyPressed && combatEvent.key.code == (sf::Keyboard::Num2))
+					{	//Magic attack
+						if (Player.getCurrentMana() >= 10)
+						{
+							testCreep.dmgCalc(Player.magicMissileDmg());//player attacks creep, creep takes damage
+							if (testCreep.getCurrentHP() <= 0)
+							{
+								combatWindow.close();
+							}//else keep fighting!
+							Player.dmgCalc(testCreep.hitDmg());//creep attacks, player takes damage
+						}
+					}
+					if (combatEvent.type == sf::Event::KeyPressed && combatEvent.key.code == (sf::Keyboard::Num3))
+					{	//Heal
+						if (Player.getCurrentMana() >= 25)
+						{
+							Player.healHP();
+
+							Player.dmgCalc(testCreep.hitDmg());//creep attacks, player takes damage
+
+						}
+					}
+
+					//end Event Handler
+
+					if (Player.getCurrentHP() <= 0)
+					{
+						//death animation, you die
+						combatWindow.close();
+						sf::RenderWindow deathWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "RIP", sf::Style::Titlebar);
+						while (deathWindow.isOpen())
+						{
+							sf::Event deathEvent;
+							while (deathWindow.pollEvent(deathEvent))
+							{
+								if (deathEvent.type == sf::Event::KeyPressed && deathEvent.key.code == sf::Keyboard::Escape)
+									deathWindow.close();
+							}
+							TextBlock RIP(Charsize * 5, "YOU DIED", sf::Vector2f(100, 200), font);
+							deathWindow.clear();
+							deathWindow.draw(RIP);
+							deathWindow.draw(tipBox);
+							deathWindow.display();
+						}
+
+					}
+					TextBlock playerName(Charsize, "Mithril Jackson", sf::Vector2f(0, 0), font);
+					TextBlock CombatHpBox(Charsize, "Health:", std::to_string(Player.getCurrentHP()), std::to_string(Player.getHP()), sf::Vector2f(0, Charsize), font);
+					TextBlock CombatManaBox(Charsize, "Mana:", std::to_string(Player.getCurrentMana()), std::to_string(Player.getMana()), sf::Vector2f(0, Charsize * 2), font);
+					TextBlock CombatAttack(Charsize, "Press 1 to attack with your weapon", sf::Vector2f(0, Charsize*26.5), font);
+					TextBlock CombatMMissile(Charsize, "Press 2 to attack with your magic (requires 10 mana)", sf::Vector2f(0, Charsize * 27.5), font);
+					TextBlock CombatHeal(Charsize, "Press 3 to heal with your magic (requires 25 mana)", sf::Vector2f(0, Charsize * 28.5), font);
+
+
+					TextBlock creepHPBOX(Charsize, "Health:", std::to_string(testCreep.getCurrentHP()), std::to_string(testCreep.getHP()), sf::Vector2f(650, Charsize), font);
+					TextBlock creepName(Charsize, "AndyBot 122", sf::Vector2f(650, 0), font);
+
+					TextBlock versus(Charsize, "versus", sf::Vector2f(350, Charsize), font);
+
+					combatWindow.clear();
+					/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::O))
+					{
+					combatWindow.draw(lvlBox);
+					}*/
+					combatWindow.draw(playerName);
+					combatWindow.draw(CombatManaBox);
+					combatWindow.draw(CombatHpBox);
+
+					combatWindow.draw(creepHPBOX);
+					combatWindow.draw(creepName);
+
+					combatWindow.draw(CombatAttack);
+					combatWindow.draw(CombatMMissile);
+					combatWindow.draw(CombatHeal);
+					combatWindow.draw(versus);
+					combatWindow.display();
+
+				}
+			}
 		}
-		noKeyWasPressed = true;
 
-		// update AnimatedSprite
-		animatedSprite.update(frameTime);
 
-		// draw
-		window.clear();
-		
-		window.draw(animatedSprite);
-		window.draw(manaBox);
-		window.draw(hpBox);
-		window.draw(xpBox);
-		window.draw(lvlBox);
-		window.draw(shekelBox);
-		window.draw(tipBox);
-		window.display();
-	}
-}
+				animatedSprite.play(*currentAnimation);
+				animatedSprite.move(movement * frameTime.asSeconds());
 
+				// if no key was pressed stop the animation
+				if (noKeyWasPressed)
+				{
+					animatedSprite.stop();
+				}
+				noKeyWasPressed = true;
+
+				// update AnimatedSprite
+				animatedSprite.update(frameTime);
+
+				// draw
+				window.clear();
+
+				window.draw(animatedSprite);
+				window.draw(manaBox);
+				window.draw(hpBox);
+				window.draw(xpBox);
+				window.draw(lvlBox);
+				window.draw(shekelBox);
+				window.draw(tipBox);
+				window.display();
+			}
+		}
