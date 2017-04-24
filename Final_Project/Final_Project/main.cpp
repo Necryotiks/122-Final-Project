@@ -296,13 +296,13 @@ int main()
 				window.clear();
 
 				/*Floor Test Code*/
-				for (int x = 0; x < FLOOR_WIDTH; x++)
+				for (auto x = 0; x < FLOOR_WIDTH; x++)
 				{
-					for (int y = 0; y < FLOOR_HEIGHT; y++)
+					for (auto y = 0; y < FLOOR_HEIGHT; y++)
 					{
 						if (testFloor.getTile(x, y)->getType() > STAIRS)
 						{
-							testFloor.getFloorTile()->setPosition((float)(x * TILE_SIZE), (float)((y * TILE_SIZE) + MAP_OFFSET));
+							testFloor.getFloorTile()->setPosition(static_cast<float>(x * TILE_SIZE), static_cast<float>(y * TILE_SIZE + MAP_OFFSET));
 							window.draw(*testFloor.getFloorTile());
 						}
 						window.draw(*testFloor.getTile(x, y));
