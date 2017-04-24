@@ -36,6 +36,21 @@ int main()
 		return 1;
 	}
 
+
+
+
+	/*Floor Test Code*/
+	sf::Image image;
+	image.loadFromFile("32x32.bmp");
+	image.createMaskFromColor(sf::Color::Black);
+	sf::Texture texture2;
+	texture2.loadFromImage(image);
+
+	Floor testFloor("Level5.txt", "Music\\Early Floor Music\\Ala Flair.ogg", texture2);
+
+
+	/*End Floor Test*/
+
 	// set up the animations for all four directions (set spritesheet and push frames)
 	Animation walkingAnimationDown;
 	Animation walkingAnimationLeft;
@@ -279,6 +294,21 @@ int main()
 
 				// draw
 				window.clear();
+
+				/*Floor Test Code*/
+				for (int x = 0; x < FLOOR_WIDTH; x++)
+				{
+					for (int y = 0; y < FLOOR_HEIGHT; y++)
+					{
+						if (testFloor.getTile(x, y)->getType() > STAIRS)
+						{
+							testFloor.getFloorTile()->setPosition((float)(x * TILE_SIZE), (float)((y * TILE_SIZE) + MAP_OFFSET));
+							window.draw(*testFloor.getFloorTile());
+						}
+						window.draw(*testFloor.getTile(x, y));
+					}
+				}
+				/*End Floor Test*/
 
 				window.draw(animatedSprite);
 				window.draw(manaBox);
