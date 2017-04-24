@@ -1,7 +1,7 @@
 #pragma once
 #include "Floor.h"
 
-///*Floor Test Code*/
+//*F/loor Test Code*/
 //sf::Image image;
 //image.loadFromFile("32x32.bmp");
 //image.createMaskFromColor(sf::Color::Black);
@@ -12,7 +12,7 @@
 //
 ///*End Floor Test*/
 
-#define NUM_FLOORS 10 //total number of floors in this tower
+#define NUM_FLOORS 8 //total number of floors in this tower
 
 class Tower
 {

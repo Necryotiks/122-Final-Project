@@ -36,28 +36,11 @@ int main()
 		return 1;
 	}
 
-<<<<<<< HEAD
 	Tower mageAscent;
 	
 
 
-=======
 
-
-
-	/*Floor Test Code*/
-	sf::Image image;
-	image.loadFromFile("32x32.bmp");
-	image.createMaskFromColor(sf::Color::Black);
-	sf::Texture texture2;
-	texture2.loadFromImage(image);
-
-	Floor testFloor("Level5.txt", "Music\\Early Floor Music\\Ala Flair.ogg", texture2);
-
-
-	/*End Floor Test*/
-
->>>>>>> origin/master
 	// set up the animations for all four directions (set spritesheet and push frames)
 	Animation walkingAnimationDown;
 	Animation walkingAnimationLeft;
@@ -302,25 +285,7 @@ int main()
 				// draw
 				window.clear();
 
-<<<<<<< HEAD
 				mageAscent.getCurrentFloor()->printFloor(window);
-=======
-				/*Floor Test Code*/
-				for (auto x = 0; x < FLOOR_WIDTH; x++)
-				{
-					for (auto y = 0; y < FLOOR_HEIGHT; y++)
-					{
-						if (testFloor.getTile(x, y)->getType() > STAIRS)
-						{
-							testFloor.getFloorTile()->setPosition(static_cast<float>(x * TILE_SIZE), static_cast<float>(y * TILE_SIZE + MAP_OFFSET));
-							window.draw(*testFloor.getFloorTile());
-						}
-						window.draw(*testFloor.getTile(x, y));
-					}
-				}
-				/*End Floor Test*/
-
->>>>>>> origin/master
 				window.draw(animatedSprite);
 				window.draw(manaBox);
 				window.draw(hpBox);
