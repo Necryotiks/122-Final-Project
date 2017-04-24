@@ -93,6 +93,7 @@ int main()
 
 	// set up AnimatedSprite
 	AnimatedSprite animatedSprite(sf::seconds(0.2), true, false);
+	animatedSprite.setScale(.9, .9);
 	animatedSprite.setPosition(sf::Vector2f(screenDimensions / 2));
 
 	sf::Clock frameClock;
@@ -116,35 +117,111 @@ int main()
 
 		// if a key was pressed set the correct animation and move correctly
 		sf::Vector2f movement(0.f, 0.f);
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
-			currentAnimation = &walkingAnimationLeft;
-			movement.y -= speed;
+			int x = 0, x2 = 0, y = 0, y2 = 0;
+			x = (int)animatedSprite.getPosition().x;
+			x2 = (int)animatedSprite.getPosition().x + 27;
+			y = (int)animatedSprite.getPosition().y;
+			y2 = (int)animatedSprite.getPosition().y + 27;
+			x = x / 32;
+			x2 = x2 / 32;
+			y = (y - MAP_OFFSET) / 32;
+			y2 = (y2 - MAP_OFFSET) / 32;
+			if (mageAscent.getCurrentFloor()->getTile(x, y)->getPassState() && mageAscent.getCurrentFloor()->getTile(x2, y)->getPassState() /*&&*/
+				/*mageAscent.getCurrentFloor()->getTile(x, y + 1)->getPassState()&& mageAscent.getCurrentFloor()->getTile(x + 1, y + 1)->getPassState()*/)
+			{
+				currentAnimation = &walkingAnimationLeft;
+				animatedSprite.setPosition((int)animatedSprite.getPosition().x, (int)animatedSprite.getPosition().y - 1);
+			}
+			else
+			{
+				currentAnimation = &walkingAnimationLeft;
+				animatedSprite.setPosition((int)animatedSprite.getPosition().x, (int)animatedSprite.getPosition().y);
+			}
 			noKeyWasPressed = false;
-			mageAscent.nextFloor();
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
-			currentAnimation = &walkingAnimationLeft;
-			movement.y += speed;
+			int x = 0, x2 = 0, y = 0, y2 = 0;
+			x = (int)animatedSprite.getPosition().x;
+			x2 = (int)animatedSprite.getPosition().x + 27;
+			y = (int)animatedSprite.getPosition().y;
+			y2 = (int)animatedSprite.getPosition().y + 27;
+			x = x / 32;
+			x2 = x2 / 32;
+			y = (y - MAP_OFFSET) / 32;
+			y2 = (y2 - MAP_OFFSET) / 32;
+			if (/*mageAscent.getCurrentFloor()->getTile(x, y)->getPassState() && mageAscent.getCurrentFloor()->getTile(x + 1, y)->getPassState() &&*/
+				mageAscent.getCurrentFloor()->getTile(x, y2)->getPassState() && mageAscent.getCurrentFloor()->getTile(x2, y2)->getPassState())
+			{
+				currentAnimation = &walkingAnimationLeft;
+				animatedSprite.setPosition((int)animatedSprite.getPosition().x, (int)animatedSprite.getPosition().y + 1);
+			}
+			else 
+			{
+				currentAnimation = &walkingAnimationLeft;
+				animatedSprite.setPosition((int)animatedSprite.getPosition().x, (int)animatedSprite.getPosition().y);
+			}
 			noKeyWasPressed = false;
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
-			currentAnimation = &walkingAnimationRight;
-			movement.x -= speed;
+			int x = 0, x2 = 0, y = 0, y2 = 0;
+			x = (int)animatedSprite.getPosition().x;
+			x2 = (int)animatedSprite.getPosition().x + 27;
+			y = (int)animatedSprite.getPosition().y;
+			y2 = (int)animatedSprite.getPosition().y + 27;
+			x = x / 32;
+			x2 = x2 / 32;
+			y = (y - MAP_OFFSET) / 32;
+			y2 = (y2 - MAP_OFFSET) / 32;
+			if (mageAscent.getCurrentFloor()->getTile(x, y)->getPassState() &&/* mageAscent.getCurrentFloor()->getTile(x + 1, y)->getPassState() &&*/
+				mageAscent.getCurrentFloor()->getTile(x, y2)->getPassState()/* && mageAscent.getCurrentFloor()->getTile(x + 1, y + 1)->getPassState()*/)
+			{
+				currentAnimation = &walkingAnimationRight;
+				animatedSprite.setPosition((int)animatedSprite.getPosition().x - 1, (int)animatedSprite.getPosition().y);
+			}
+			else
+			{
+				currentAnimation = &walkingAnimationRight;
+				animatedSprite.setPosition((int)animatedSprite.getPosition().x, (int)animatedSprite.getPosition().y);
+			}
 			noKeyWasPressed = false;
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S) && sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
-			currentAnimation = &walkingAnimationLeft;
-			movement.x += speed;
+			int x = 0, x2 = 0, y = 0, y2 = 0;
+			x = (int)animatedSprite.getPosition().x;
+			x2 = (int)animatedSprite.getPosition().x + 27;
+			y = (int)animatedSprite.getPosition().y;
+			y2 = (int)animatedSprite.getPosition().y + 27;
+			x = x / 32;
+			x2 = x2 / 32;
+			y = (y - MAP_OFFSET) / 32;
+			y2 = (y2 - MAP_OFFSET) / 32;
+			if (/*mageAscent.getCurrentFloor()->getTile(x, y)->getPassState() && */mageAscent.getCurrentFloor()->getTile(x2, y)->getPassState() &&
+				/*mageAscent.getCurrentFloor()->getTile(x, y + 1)->getPassState() && */mageAscent.getCurrentFloor()->getTile(x2, y2)->getPassState())
+			{
+				currentAnimation = &walkingAnimationLeft;
+				animatedSprite.setPosition((int)animatedSprite.getPosition().x + 1, (int)animatedSprite.getPosition().y);
+			}
+			else
+			{
+				currentAnimation = &walkingAnimationLeft;
+				animatedSprite.setPosition((int)animatedSprite.getPosition().x, (int)animatedSprite.getPosition().y);
+			}
 			noKeyWasPressed = false;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
 		{
 			currentAnimation = &DeathAnimation;
 			noKeyWasPressed = false;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::N))
+		{
+			mageAscent.nextFloor();
+			system("pause");
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
 		{
