@@ -18,12 +18,14 @@ public:
 	int getMana() const;
 	void setMana(int &value);
 	int getCurrentMana() const;
+	void setCurrentMana(int addMana);
 	
 	int getCurrentHP() override;
 	int getCurrentXP() const;
 	void awardXP(int &value);
 	int getNextXP() const;
 	int getCurrentLVL() const;
+	void setCurrentLVL(int addLVL);
 
 	int getShekels() const;
 	void setShekels(int val);

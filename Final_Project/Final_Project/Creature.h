@@ -9,7 +9,7 @@ public:
 	virtual ~Creature();
 
 	int getHP() const;
-	void setHP(int &value);
+	void setHP(int value);
 
 	virtual int getCurrentHP();
 	void setCurrentHP(int temp);

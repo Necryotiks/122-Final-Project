@@ -27,12 +27,16 @@ void PlayerCharacter::setMana(int & value)
 {
 	mana = value;
 	currentMana = value;
-	assert(mana == value);
 }
 
 int PlayerCharacter::getCurrentMana() const
 {
 	return currentMana;
+}
+
+void PlayerCharacter::setCurrentMana(int addMana)
+{
+	currentMana = addMana;
 }
 
 int PlayerCharacter::getCurrentHP()
@@ -53,7 +57,13 @@ void PlayerCharacter::awardXP(int & value)//increment XP
 int PlayerCharacter::getNextXP() const
 //amount of XP to next level
 {
-	return currentLVL * 1000 - current_XP;
+	return currentLVL * 1000;
+}
+
+void PlayerCharacter::setCurrentLVL(int addLVL)
+{
+	current_XP = current_XP - getNextXP();
+	currentLVL += addLVL; 
 }
 
 int PlayerCharacter::getCurrentLVL() const
@@ -68,7 +78,7 @@ int PlayerCharacter::getShekels() const
 
 void PlayerCharacter::setShekels(int val)
 {
-	shekels += val;
+	shekels = val;
 }
 
 int PlayerCharacter::getHPpot() const
@@ -100,7 +110,11 @@ int PlayerCharacter::magicMissileDmg()
 void PlayerCharacter::healHP()
 {
 	currentMana = currentMana - 25;
-	currentHP= rand() % (10 * currentLVL)+1;
+	currentHP += rand() % (30 * currentLVL)+1;
+	if (currentHP > hp)
+	{
+		currentHP = hp;
+	}
 }
 
 //Inventory & PlayerCharacter::getINV()//view inventory

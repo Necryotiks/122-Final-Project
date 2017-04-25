@@ -22,7 +22,7 @@ int Creature::getHP() const
 {
 	return hp;
 }
-void Creature::setHP(int &value)
+void Creature::setHP(int value)
 {
 	hp = value;
 }
@@ -43,7 +43,7 @@ int Creature::get_strength() const
 }
 void Creature::set_strength(int temp)
 {
-	strength = temp;
+	strength += temp;
 }
 
 void Creature::dmgCalc(int incDamage)
