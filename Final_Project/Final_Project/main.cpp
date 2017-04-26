@@ -272,6 +272,8 @@ int main()
 					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
 					mageAscent.nextFloor();
 					break;
+				case 13:
+					window.close();
 				}
 			}
 
@@ -294,12 +296,31 @@ int main()
 			}
 
 			//Creature event happens. 
-			if ((mageAscent.getCurrentFloor()->getTile(x, y)->getType() == MOB || mageAscent.getCurrentFloor()->getTile(x2, y)->getType() == MOB) &&
+			if (((mageAscent.getCurrentFloor()->getTile(x, y)->getType() == MOB || mageAscent.getCurrentFloor()->getTile(x2, y)->getType() == MOB)||
+				(mageAscent.getCurrentFloor()->getTile(x, y)->getType() == MINI || mageAscent.getCurrentFloor()->getTile(x2, y)->getType() == MINI) ||
+				(mageAscent.getCurrentFloor()->getTile(x, y)->getType() == BOSS || mageAscent.getCurrentFloor()->getTile(x2, y)->getType() == BOSS)) &&
 				(mageAscent.getCurrentFloor()->getTile(x, y)->getInteractState() || mageAscent.getCurrentFloor()->getTile(x2, y)->getInteractState()))
 			{
 				mageAscent.getCurrentFloor()->getTile(x, y)->setTileState(false);
 				mageAscent.getCurrentFloor()->getTile(x2, y)->setTileState(false);
 				Creature testCreep("AndyBot", 50 * floor, 5 * floor, 10);
+				if ((mageAscent.getCurrentFloor()->getTile(x, y)->getType() == MOB || mageAscent.getCurrentFloor()->getTile(x2, y)->getType() == MOB))
+				{
+					testCreep.set_strength(5 * floor);
+					testCreep.setCurrentHP(50 * floor);
+				}
+				else if ((mageAscent.getCurrentFloor()->getTile(x, y)->getType() == MINI || mageAscent.getCurrentFloor()->getTile(x2, y)->getType() == MINI))
+				{
+					testCreep.set_strength(20);
+					testCreep.setCurrentHP(400);
+					testCreep.setHP(400);
+				}
+				else
+				{
+					testCreep.set_strength(50);
+					testCreep.setCurrentHP(2000);
+					testCreep.setHP(2000);
+				}
 				sf::RenderWindow combatWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "Fight!", sf::Style::Titlebar);
 				combatWindow.setFramerateLimit(60);
 				//set combat resolve time
@@ -444,7 +465,6 @@ int main()
 					}
 				}
 			}
-
 
 			noKeyWasPressed = false;
 		}
@@ -1195,6 +1215,7 @@ int main()
 		{
 			mageAscent.nextFloor();
 			system("pause");
+			floor++;
 		}
 		
 		animatedSprite.play(*currentAnimation);
