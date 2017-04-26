@@ -9,12 +9,22 @@
 
 int main()
 {
+	int selection = 0;
+
+	do
+	{
+		cout << "Enter 1-16 to select character:" << endl;
+		cin >> selection;
+	} while ((selection < 1) && (selection > 16));
+
+	
 	sf::Font font;
 
 	if (!font.loadFromFile("font1.ttf"))
 	{
 		//will throw error
 	}
+
 	PlayerCharacter Player;
 	TextBlock hpBox(Charsize, "Health:", std::to_string(Player.getCurrentHP()), std::to_string(Player.getHP()), sf::Vector2f(0, 0), font);
 	TextBlock manaBox(Charsize, "Mana:", std::to_string(Player.getCurrentMana()), std::to_string(Player.getMana()), sf::Vector2f(150, 0), font);
@@ -30,10 +40,16 @@ int main()
 
 	// load texture (spritesheet)
 	sf::Texture texture;
-	if (!texture.loadFromFile("CharSprites/BronzeKnight.png"))
+	if (!texture.loadFromFile("CharSprites/" + std::to_string(selection) + ".png"))
 	{
 		std::cout << "Failed to load player spritesheet!" << std::endl;
 		return 1;
+	}
+
+	sf::Music battle;
+	if (!battle.openFromFile("Music\\battle.ogg"))
+	{
+		std::cout << "Bad load." << std::endl; //error message
 	}
 
 	sf::Music deathKnell;
@@ -48,7 +64,6 @@ int main()
 	{
 		std::cout << "Bad load." << std::endl; //error message
 	}
-	
 
 	Tower mageAscent;
 
@@ -269,13 +284,26 @@ int main()
 				sf::RenderWindow combatWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "Fight!", sf::Style::Titlebar);
 				combatWindow.setFramerateLimit(60);
 				//set combat resolve time
+				
+				mageAscent.getCurrentFloor()->stopBgm();
+
+				if (combatWindow.hasFocus())
+					battle.play();
+				else
+					battle.stop();
+
 				while (combatWindow.isOpen())
 				{
+
 					sf::Event combatEvent;
 					while (combatWindow.pollEvent(combatEvent))
 					{
 						if (combatEvent.type == sf::Event::Closed)
+						{
 							combatWindow.close();
+							battle.stop();
+							mageAscent.getCurrentFloor()->playBgm();
+						}
 						if (combatEvent.type == sf::Event::KeyPressed && combatEvent.key.code == sf::Keyboard::Num1)
 						{	//Melee attack
 							testCreep.dmgCalc(Player.hitDmg());//player attacks creep, creep takes damage
@@ -292,6 +320,8 @@ int main()
 								}
 								Player.setCurrentMana(mana);
 								combatWindow.close();
+								battle.stop();
+								mageAscent.getCurrentFloor()->playBgm();
 							}//else keep fighting!
 							Player.dmgCalc(testCreep.hitDmg());//creep attacks, player takes damage
 						}
@@ -313,6 +343,8 @@ int main()
 									}
 									Player.setCurrentMana(mana);
 									combatWindow.close();
+									battle.stop();
+									mageAscent.getCurrentFloor()->playBgm();
 								}//else keep fighting!
 								Player.dmgCalc(testCreep.hitDmg());//creep attacks, player takes damage
 							}
@@ -349,6 +381,7 @@ int main()
 							}
 							//death animation, you die
 							combatWindow.close();
+							battle.stop();
 							sf::RenderWindow deathWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "RIP", sf::Style::Titlebar);
 							mageAscent.getCurrentFloor()->stopBgm();
 
@@ -520,13 +553,25 @@ int main()
 				sf::RenderWindow combatWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "Fight!", sf::Style::Titlebar);
 				combatWindow.setFramerateLimit(60);
 				//set combat resolve time
+				mageAscent.getCurrentFloor()->stopBgm(); 
+				
+				if (combatWindow.hasFocus())
+					battle.play();
+				else
+					battle.stop();
+				
 				while (combatWindow.isOpen())
 				{
+
 					sf::Event combatEvent;
 					while (combatWindow.pollEvent(combatEvent))
 					{
 						if (combatEvent.type == sf::Event::Closed)
+						{
 							combatWindow.close();
+							battle.stop();
+							mageAscent.getCurrentFloor()->playBgm();
+						}
 						if (combatEvent.type == sf::Event::KeyPressed && combatEvent.key.code == sf::Keyboard::Num1)
 						{	//Melee attack
 							testCreep.dmgCalc(Player.hitDmg());//player attacks creep, creep takes damage
@@ -543,6 +588,8 @@ int main()
 								}
 								Player.setCurrentMana(mana);
 								combatWindow.close();
+								battle.stop();
+								mageAscent.getCurrentFloor()->playBgm();
 							}//else keep fighting!
 							Player.dmgCalc(testCreep.hitDmg());//creep attacks, player takes damage
 						}
@@ -564,6 +611,8 @@ int main()
 									}
 									Player.setCurrentMana(mana);
 									combatWindow.close();
+									battle.stop();
+									mageAscent.getCurrentFloor()->playBgm();
 								}//else keep fighting!
 								Player.dmgCalc(testCreep.hitDmg());//creep attacks, player takes damage
 							}
@@ -600,6 +649,7 @@ int main()
 							}
 							//death animation, you die
 							combatWindow.close();
+							battle.stop();
 							sf::RenderWindow deathWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "RIP", sf::Style::Titlebar);
 							mageAscent.getCurrentFloor()->stopBgm();
 
@@ -718,13 +768,24 @@ int main()
 				sf::RenderWindow combatWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "Fight!", sf::Style::Titlebar);
 				combatWindow.setFramerateLimit(60);
 				//set combat resolve time
+				mageAscent.getCurrentFloor()->stopBgm(); 
+				
+				if (combatWindow.hasFocus())
+					battle.play();
+				else
+					battle.stop();
+				
 				while (combatWindow.isOpen())
 				{
 					sf::Event combatEvent;
 					while (combatWindow.pollEvent(combatEvent))
 					{
 						if (combatEvent.type == sf::Event::Closed)
+						{
 							combatWindow.close();
+							battle.stop();
+							mageAscent.getCurrentFloor()->playBgm();
+						}
 						if (combatEvent.type == sf::Event::KeyPressed && combatEvent.key.code == sf::Keyboard::Num1)
 						{	//Melee attack
 							testCreep.dmgCalc(Player.hitDmg());//player attacks creep, creep takes damage
@@ -741,6 +802,8 @@ int main()
 								}
 								Player.setCurrentMana(mana);
 								combatWindow.close();
+								battle.stop();
+								mageAscent.getCurrentFloor()->playBgm();
 							}//else keep fighting!
 							Player.dmgCalc(testCreep.hitDmg());//creep attacks, player takes damage
 						}
@@ -762,6 +825,8 @@ int main()
 									}
 									Player.setCurrentMana(mana);
 									combatWindow.close();
+									battle.stop();
+									mageAscent.getCurrentFloor()->playBgm();
 								}//else keep fighting!
 								Player.dmgCalc(testCreep.hitDmg());//creep attacks, player takes damage
 							}
@@ -798,6 +863,7 @@ int main()
 							}
 							//death animation, you die
 							combatWindow.close();
+							battle.stop();
 							sf::RenderWindow deathWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "RIP", sf::Style::Titlebar);
 							mageAscent.getCurrentFloor()->stopBgm();
 
@@ -916,13 +982,23 @@ int main()
 				sf::RenderWindow combatWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "Fight!", sf::Style::Titlebar);
 				combatWindow.setFramerateLimit(60);
 				//set combat resolve time
+				mageAscent.getCurrentFloor()->stopBgm();
+				if (combatWindow.hasFocus())
+					battle.play();
+				else
+					battle.stop();
+				
 				while (combatWindow.isOpen())
 				{
 					sf::Event combatEvent;
 					while (combatWindow.pollEvent(combatEvent))
 					{
 						if (combatEvent.type == sf::Event::Closed)
+						{
 							combatWindow.close();
+							battle.stop();
+							mageAscent.getCurrentFloor()->playBgm();
+						}
 						if (combatEvent.type == sf::Event::KeyPressed && combatEvent.key.code == sf::Keyboard::Num1)
 						{	//Melee attack
 							testCreep.dmgCalc(Player.hitDmg());//player attacks creep, creep takes damage
@@ -939,6 +1015,8 @@ int main()
 								}
 								Player.setCurrentMana(mana);
 								combatWindow.close();
+								battle.stop();
+								mageAscent.getCurrentFloor()->playBgm();
 							}//else keep fighting!
 							Player.dmgCalc(testCreep.hitDmg());//creep attacks, player takes damage
 						}
@@ -960,6 +1038,8 @@ int main()
 									}
 									Player.setCurrentMana(mana);
 									combatWindow.close();
+									battle.stop();
+									mageAscent.getCurrentFloor()->playBgm();
 								}//else keep fighting!
 								Player.dmgCalc(testCreep.hitDmg());//creep attacks, player takes damage
 							}
@@ -996,6 +1076,7 @@ int main()
 							}
 							//death animation, you die
 							combatWindow.close();
+							battle.stop();
 							
 							
 							sf::RenderWindow deathWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "RIP", sf::Style::Titlebar);
