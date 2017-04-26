@@ -29,12 +29,11 @@ using std::string;
 class Floor
 {
 public:
-	Floor(string floorFile, string musicFile, sf::Texture & tileSet);
+	Floor(string floorFile, string musicFile, sf::Texture & tileSet, sf::Vector2f startPoint);
 	
 	~Floor();
 	
 	void printFloor(sf::RenderWindow & window);
-
 	
 	void playBgm();
 
@@ -42,17 +41,20 @@ public:
 
 	Tile *& getTile(int x, int y);
 
-	Tile *& getFloorTile();
+	Tile *& getFloorSprite();
+
+	sf::Vector2f & getStartPosition();
 
 protected:
 	Tile * mLevel[FLOOR_WIDTH][FLOOR_HEIGHT];
 	sf::Music mBgm; //background music stream
 	string mBgmFileName; //music file to open
+	sf::Vector2f mStartPosition;
 	
-	//These should probably be in Tower.h
 	Tile * mFloor;
 	Tile * mWall;
 	Tile * mStairs;
+
 	
 
 private:

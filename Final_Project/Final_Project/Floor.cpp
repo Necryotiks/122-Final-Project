@@ -4,7 +4,7 @@ using std::ifstream;
 using std::vector;
 using std::string;
 
-Floor::Floor(string floorFile, string musicFile, sf::Texture & tileSet)
+Floor::Floor(string floorFile, string musicFile, sf::Texture & tileSet, sf::Vector2f startPoint)
 {
 	mBgmFileName = musicFile;
 	if (!mBgm.openFromFile(mBgmFileName)) //check for loading issues
@@ -13,9 +13,12 @@ Floor::Floor(string floorFile, string musicFile, sf::Texture & tileSet)
 	}
 	mBgm.setLoop(true); //loop entire time player is on the floor
 
+	mStartPosition = startPoint;
+
 	mFloor = new Tile(FLOOR, tileSet);
 	mWall = new Tile(WALL, tileSet);
 	mStairs = new Tile(STAIRS, tileSet);
+
 
 	//open file
 	openCsv(floorFile);
@@ -67,8 +70,8 @@ void Floor::printFloor(sf::RenderWindow & window)
 		{
 			if (this->getTile(x, y)->getType() > STAIRS)
 			{
-				this->getFloorTile()->setPosition((float)(x * TILE_SIZE), (float)((y * TILE_SIZE) + MAP_OFFSET));
-				window.draw(*this->getFloorTile());
+				this->getFloorSprite()->setPosition((float)(x * TILE_SIZE), (float)((y * TILE_SIZE) + MAP_OFFSET));
+				window.draw(*this->getFloorSprite());
 			}
 			window.draw(*this->getTile(x, y));
 		}
@@ -93,9 +96,14 @@ Tile *& Floor::getTile(int x, int y)
 	return mLevel[x][y];
 }
 
-Tile *& Floor::getFloorTile()
+Tile *& Floor::getFloorSprite()
 {
 	return mFloor;
+}
+
+sf::Vector2f & Floor::getStartPosition()
+{
+	return mStartPosition;
 }
 
 void Floor::openCsv(string filename)

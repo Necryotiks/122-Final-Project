@@ -22,15 +22,29 @@ public:
 		mBitmap.loadFromFile("32x32.bmp");
 		mBitmap.createMaskFromColor(sf::Color::Black);
 		mTileset.loadFromImage(mBitmap);
+		sf::Vector2f startPosition[12] = 
+		{
+			{(float)(12 * TILE_SIZE), (float)MAP_OFFSET + (14 * TILE_SIZE)},
+			{(float)(23 * TILE_SIZE), (float)MAP_OFFSET + (14 * TILE_SIZE)},
+			{(float)(2 * TILE_SIZE), (float)MAP_OFFSET + (1 * TILE_SIZE)},
+			{(float)(12 * TILE_SIZE), (float)MAP_OFFSET + (12 * TILE_SIZE)},
+			{(float)(12 * TILE_SIZE), (float)MAP_OFFSET + (12 * TILE_SIZE)},
+			{(float)(20 * TILE_SIZE), (float)MAP_OFFSET + (7 * TILE_SIZE)},
+			{(float)(1 * TILE_SIZE), (float)MAP_OFFSET + (1 * TILE_SIZE)},
+			{(float)(12 * TILE_SIZE), (float)MAP_OFFSET + (12 * TILE_SIZE)},
+			{(float)(12 * TILE_SIZE), (float)MAP_OFFSET + (12 * TILE_SIZE)},
+			{(float)(23 * TILE_SIZE), (float)MAP_OFFSET + (14 * TILE_SIZE)},
+			{(float)(12 * TILE_SIZE), (float)MAP_OFFSET + (14 * TILE_SIZE)},
+			{(float)(12 * TILE_SIZE), (float)MAP_OFFSET + (12 * TILE_SIZE)}
+		};
 
-		//TODO: fill vector and use for creating floors
-		//mMusicFilePaths.clear(); //base initialization 
+		
 
 		for (int i = NUM_FLOORS; i > 0; i--)
 		{
 			string filename = "Level" + std::to_string(i); //Build filename to push.
-			//mMusicFilePaths.push_back(filename + ".ogg");
-			mFloorBlueprints.push_back(new Floor(filename + ".txt", "Music\\" + filename + ".ogg", mTileset));
+			
+			mFloorBlueprints.push_back(new Floor(filename + ".txt", "Music\\" + filename + ".ogg", mTileset, startPosition[i-1]));
 		}
 	}
 
@@ -53,13 +67,13 @@ public:
 	{
 		this->getCurrentFloor()->stopBgm();
 		mFloorBlueprints.pop_back();
+
 	}
 
 protected:
 	sf::Image mBitmap;
 	sf::Texture mTileset;
 	vector<Floor *> mFloorBlueprints;
-	//vector<string> mMusicFilePaths;
 
 private:
 	
