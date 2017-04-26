@@ -1410,17 +1410,17 @@ int main()
 	credits4.setOutlineThickness(2.0f);
 	credits4.setOutlineColor(sf::Color::Black);
 
-	TextBlock credits5(Charsize, "Kathy Freund\t\t\t\t\t\t   Player Character Design", sf::Vector2f(TILE_SIZE, (12 * TILE_SIZE)), font);
+	TextBlock credits5(Charsize, "Kathy Freund\t\t\t\t\t\t   Player Character Design\n\t\t\t\t\t\t\t\t\t\t\t\tQuality Assurance\n\t\t\t\t\t\t\t\t\t\t\t\tCombat Window", sf::Vector2f(TILE_SIZE, (12 * TILE_SIZE)), font);
 	credits5.setFillColor(sf::Color(174, 174, 210));
 	credits5.setOutlineThickness(2.0f);
 	credits5.setOutlineColor(sf::Color::Black);
 
-	TextBlock credits6(Charsize, "Flying Spaghetti Monster\t\t Main.cpp", sf::Vector2f(TILE_SIZE, ((creditsSize.y / 2) + (3.33 * TILE_SIZE))), font);
+	TextBlock credits6(Charsize, "Flying Spaghetti Monster\t\t Main.cpp", sf::Vector2f(TILE_SIZE, ((creditsSize.y / 2) + (4.65* TILE_SIZE))), font);
 	credits6.setFillColor(sf::Color(174, 174, 210));
 	credits6.setOutlineThickness(2.0f);
 	credits6.setOutlineColor(sf::Color::Black);
 
-	TextBlock credits7(Charsize, "Game Textures and Music obtained from www.OpenGameArt.org", sf::Vector2f(TILE_SIZE, ((creditsSize.y / 2) + (5 * TILE_SIZE))), font);
+	TextBlock credits7(Charsize, "Game Textures and Music obtained from www.OpenGameArt.org", sf::Vector2f(TILE_SIZE, ((creditsSize.y / 2) + (6.5 * TILE_SIZE))), font);
 	credits7.setFillColor(sf::Color(174, 174, 210));
 	credits7.setOutlineThickness(2.0f);
 	credits7.setOutlineColor(sf::Color::Black);
