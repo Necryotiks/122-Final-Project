@@ -23,6 +23,7 @@ public:
 
 	string getName() const;
 
+	void setXP(int temp);
 	int getXP() const;
 
 protected:

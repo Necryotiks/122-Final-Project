@@ -16,7 +16,10 @@ Creature::~Creature()
 
 }
 
-
+void Creature::setXP(int temp)
+{
+	xpWorth = temp;
+}
 
 int Creature::getHP() const
 {

@@ -95,10 +95,15 @@ int main()
 	titleScroll.setPosition(((float)TILE_SIZE / 2), (float)((titleWindow.getSize().y / 2)) - (titleScroll.getLocalBounds().height / 2));
 	titleScroll.scale((targetSize.x - TILE_SIZE) / titleScroll.getLocalBounds().width, 1);
 
-	TextBlock instructions((Charsize * 1.25), "Press any key to START", sf::Vector2f(((targetSize.x / 2) - (5 * TILE_SIZE)), ((targetSize.y / 2) + (2 * TILE_SIZE))), font);
+	TextBlock instructions((Charsize * 1.25), "Press any key to START", sf::Vector2f(((targetSize.x / 2) - (5 * TILE_SIZE)), ((targetSize.y / 2) + (3 * TILE_SIZE))), font);
 	instructions.setFillColor(sf::Color(174, 174, 210));
 	instructions.setOutlineThickness(2.0f);
 	instructions.setOutlineColor(sf::Color::Black);
+
+	TextBlock instructions2((Charsize * 1.25), "W = up, A = left, S = down, D = right", sf::Vector2f(((targetSize.x / 2) - (5 * TILE_SIZE)), ((targetSize.y / 2) + (5 * TILE_SIZE))), font);
+	instructions2.setFillColor(sf::Color(174, 174, 210));
+	instructions2.setOutlineThickness(2.0f);
+	instructions2.setOutlineColor(sf::Color::Black);
 
 	//light purple (224,224,255)
 	//medium purple (174,174,210)
@@ -129,6 +134,7 @@ int main()
 		titleWindow.draw(titleSprite);
 		titleWindow.draw(titleScroll);
 		titleWindow.draw(instructions);
+		titleWindow.draw(instructions2);
 		titleWindow.display();
 	}
 	/*End Title Screen Code*/
@@ -271,15 +277,21 @@ int main()
 				Creature testCreep("AndyBot", 50 * mageAscent.getCurrentFloorNumber(), 5 * mageAscent.getCurrentFloorNumber(), 10);
 				if ((mageAscent.getCurrentFloor()->getTile(x, y)->getType() == MOB || mageAscent.getCurrentFloor()->getTile(x2, y)->getType() == MOB))
 				{
-					Creature testCreep("AndyBot", 50 * mageAscent.getCurrentFloorNumber(), 5 * mageAscent.getCurrentFloorNumber(), 10);
+					testCreep.setXP(10);
 				}
 				else if ((mageAscent.getCurrentFloor()->getTile(x, y)->getType() == MINI || mageAscent.getCurrentFloor()->getTile(x2, y)->getType() == MINI))
 				{
-					Creature testCreep("AndyBot", 400, 20, 42);
+					testCreep.setXP(42);
+					testCreep.setHP(400);
+					testCreep.setCurrentHP(400);
+					testCreep.set_strength(20);
 				}
 				else
 				{
-					Creature testCreep("AndyBot", 2000, 50, 45);
+					testCreep.setXP(45);
+					testCreep.setHP(2500);
+					testCreep.setCurrentHP(2500);
+					testCreep.set_strength(50);
 				}
 				sf::RenderWindow combatWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "Fight!", sf::Style::Titlebar);
 				combatWindow.setFramerateLimit(60);
@@ -677,7 +689,7 @@ int main()
 							}
 							exit(1);
 						}
-						TextBlock playerName(Charsize, "Mithril Jackson", sf::Vector2f(0, 0), font);
+						TextBlock playerName(Charsize, "Brave Adventurer", sf::Vector2f(0, 0), font);
 						TextBlock CombatHpBox(Charsize, "Health:", std::to_string(Player.getCurrentHP()), std::to_string(Player.getHP()), sf::Vector2f(0, Charsize), font);
 						TextBlock CombatManaBox(Charsize, "Mana:", std::to_string(Player.getCurrentMana()), std::to_string(Player.getMana()), sf::Vector2f(0, Charsize * 2), font);
 						TextBlock CombatAttack(Charsize, "Press 1 to attack with your weapon", sf::Vector2f(0, Charsize*26.5), font);
@@ -685,7 +697,7 @@ int main()
 						TextBlock CombatHeal(Charsize, "Press 3 to heal with your magic (requires 25 mana)", sf::Vector2f(0, Charsize * 28.5), font);
 
 
-						TextBlock creepHPBOX(Charsize, "Health:", std::to_string(testCreep.getCurrentHP()), std::to_string(testCreep.getHP()), sf::Vector2f(650, Charsize), font);
+						TextBlock creepHPBOX(Charsize, "Health:", std::to_string(testCreep.getCurrentHP()), std::to_string(testCreep.getHP()), sf::Vector2f(600, Charsize), font);
 						TextBlock creepName(Charsize, "AndyBot 122", sf::Vector2f(650, 0), font);
 
 						TextBlock versus(Charsize, "versus", sf::Vector2f(350, Charsize), font);
@@ -695,19 +707,69 @@ int main()
 						{
 						combatWindow.draw(lvlBox);
 						}*/
+						sf::Texture highreshero;
+						sf::Texture highresogre;
+						highreshero.loadFromFile("CharSprites/hero.png");
+						highresogre.loadFromFile("CharSprites/ogre.png");
+						sf::Sprite combathero;
+						sf::Sprite combatogre;
+						combathero.setTexture(highreshero);
+						combatogre.setTexture(highresogre);
+						combathero.setPosition(5.0f, 75.0f);
+						combathero.setScale(0.4f, 0.4f);
+						combatogre.setPosition(435.0f, 50.0f);
+						combatogre.setScale(0.5f, 0.5f);
+
+						if (testCreep.getXP() == 42)
+						{
+							sf::Texture miniboss;
+							miniboss.loadFromFile("CharSprites/miniboss.png");
+							sf::Sprite mini;
+							mini.setTexture(miniboss);
+							mini.setPosition(240.0f, 125.0f);
+							mini.setScale(0.4f, 0.4f);
+							TextBlock creepName(Charsize, "Minotard", sf::Vector2f(600, 0), font);
+							combatWindow.draw(creepName);
+							combatWindow.draw(mini);
+						}
+						else if (testCreep.getXP() == 45)
+						{
+							sf::Texture mainboss;
+							mainboss.loadFromFile("CharSprites/mainboss.png");
+							sf::Sprite main;
+							main.setTexture(mainboss);
+							main.setPosition(500.0f, 72.5f);
+							main.setScale(0.6f, 0.6f);
+							TextBlock creepName(Charsize, "Necromancer", sf::Vector2f(600, 0), font);
+							combatWindow.draw(creepName);
+							combatWindow.draw(main);
+						}
+						else
+						{
+							sf::Texture highresogre;
+							highresogre.loadFromFile("CharSprites/ogre.png");
+							sf::Sprite combatogre;
+							combatogre.setTexture(highresogre);
+							combatogre.setPosition(435.0f, 50.0f);
+							combatogre.setScale(0.5f, 0.5f);
+							TextBlock creepName(Charsize, "Ogricus", sf::Vector2f(600, 0), font);
+							combatWindow.draw(creepName);
+							combatWindow.draw(combatogre);
+						}
+
+
 						combatWindow.draw(playerName);
 						combatWindow.draw(CombatManaBox);
 						combatWindow.draw(CombatHpBox);
 
+						combatWindow.draw(combathero);
 						combatWindow.draw(creepHPBOX);
-						combatWindow.draw(creepName);
 
 						combatWindow.draw(CombatAttack);
 						combatWindow.draw(CombatMMissile);
 						combatWindow.draw(CombatHeal);
 						combatWindow.draw(versus);
 						combatWindow.display();
-
 					}
 				}
 			}
@@ -891,7 +953,7 @@ int main()
 							}
 							exit(1);
 						}
-						TextBlock playerName(Charsize, "Mithril Jackson", sf::Vector2f(0, 0), font);
+						TextBlock playerName(Charsize, "Brave Adventurer", sf::Vector2f(0, 0), font);
 						TextBlock CombatHpBox(Charsize, "Health:", std::to_string(Player.getCurrentHP()), std::to_string(Player.getHP()), sf::Vector2f(0, Charsize), font);
 						TextBlock CombatManaBox(Charsize, "Mana:", std::to_string(Player.getCurrentMana()), std::to_string(Player.getMana()), sf::Vector2f(0, Charsize * 2), font);
 						TextBlock CombatAttack(Charsize, "Press 1 to attack with your weapon", sf::Vector2f(0, Charsize*26.5), font);
@@ -899,7 +961,7 @@ int main()
 						TextBlock CombatHeal(Charsize, "Press 3 to heal with your magic (requires 25 mana)", sf::Vector2f(0, Charsize * 28.5), font);
 
 
-						TextBlock creepHPBOX(Charsize, "Health:", std::to_string(testCreep.getCurrentHP()), std::to_string(testCreep.getHP()), sf::Vector2f(650, Charsize), font);
+						TextBlock creepHPBOX(Charsize, "Health:", std::to_string(testCreep.getCurrentHP()), std::to_string(testCreep.getHP()), sf::Vector2f(600, Charsize), font);
 						TextBlock creepName(Charsize, "AndyBot 122", sf::Vector2f(650, 0), font);
 
 						TextBlock versus(Charsize, "versus", sf::Vector2f(350, Charsize), font);
@@ -909,12 +971,63 @@ int main()
 						{
 						combatWindow.draw(lvlBox);
 						}*/
+						sf::Texture highreshero;
+						sf::Texture highresogre;
+						highreshero.loadFromFile("CharSprites/hero.png");
+						highresogre.loadFromFile("CharSprites/ogre.png");
+						sf::Sprite combathero;
+						sf::Sprite combatogre;
+						combathero.setTexture(highreshero);
+						combatogre.setTexture(highresogre);
+						combathero.setPosition(5.0f, 75.0f);
+						combathero.setScale(0.4f, 0.4f);
+						combatogre.setPosition(435.0f, 50.0f);
+						combatogre.setScale(0.5f, 0.5f);
+
+						if (testCreep.getXP() == 42)
+						{
+							sf::Texture miniboss;
+							miniboss.loadFromFile("CharSprites/miniboss.png");
+							sf::Sprite mini;
+							mini.setTexture(miniboss);
+							mini.setPosition(240.0f, 125.0f);
+							mini.setScale(0.4f, 0.4f);
+							TextBlock creepName(Charsize, "Minotard", sf::Vector2f(600, 0), font);
+							combatWindow.draw(creepName);
+							combatWindow.draw(mini);
+						}
+						else if (testCreep.getXP() == 45)
+						{
+							sf::Texture mainboss;
+							mainboss.loadFromFile("CharSprites/mainboss.png");
+							sf::Sprite main;
+							main.setTexture(mainboss);
+							main.setPosition(500.0f, 72.5f);
+							main.setScale(0.6f, 0.6f);
+							TextBlock creepName(Charsize, "Necromancer", sf::Vector2f(600, 0), font);
+							combatWindow.draw(creepName);
+							combatWindow.draw(main);
+						}
+						else
+						{
+							sf::Texture highresogre;
+							highresogre.loadFromFile("CharSprites/ogre.png");
+							sf::Sprite combatogre;
+							combatogre.setTexture(highresogre);
+							combatogre.setPosition(435.0f, 50.0f);
+							combatogre.setScale(0.5f, 0.5f);
+							TextBlock creepName(Charsize, "Ogricus", sf::Vector2f(600, 0), font);
+							combatWindow.draw(creepName);
+							combatWindow.draw(combatogre);
+						}
+
+
 						combatWindow.draw(playerName);
 						combatWindow.draw(CombatManaBox);
 						combatWindow.draw(CombatHpBox);
 
+						combatWindow.draw(combathero);
 						combatWindow.draw(creepHPBOX);
-						combatWindow.draw(creepName);
 
 						combatWindow.draw(CombatAttack);
 						combatWindow.draw(CombatMMissile);
@@ -1107,7 +1220,7 @@ int main()
 							}
 							exit(1);
 						}
-						TextBlock playerName(Charsize, "Mithril Jackson", sf::Vector2f(0, 0), font);
+						TextBlock playerName(Charsize, "Brave Adventurer", sf::Vector2f(0, 0), font);
 						TextBlock CombatHpBox(Charsize, "Health:", std::to_string(Player.getCurrentHP()), std::to_string(Player.getHP()), sf::Vector2f(0, Charsize), font);
 						TextBlock CombatManaBox(Charsize, "Mana:", std::to_string(Player.getCurrentMana()), std::to_string(Player.getMana()), sf::Vector2f(0, Charsize * 2), font);
 						TextBlock CombatAttack(Charsize, "Press 1 to attack with your weapon", sf::Vector2f(0, Charsize*26.5), font);
@@ -1115,7 +1228,7 @@ int main()
 						TextBlock CombatHeal(Charsize, "Press 3 to heal with your magic (requires 25 mana)", sf::Vector2f(0, Charsize * 28.5), font);
 
 
-						TextBlock creepHPBOX(Charsize, "Health:", std::to_string(testCreep.getCurrentHP()), std::to_string(testCreep.getHP()), sf::Vector2f(650, Charsize), font);
+						TextBlock creepHPBOX(Charsize, "Health:", std::to_string(testCreep.getCurrentHP()), std::to_string(testCreep.getHP()), sf::Vector2f(600, Charsize), font);
 						TextBlock creepName(Charsize, "AndyBot 122", sf::Vector2f(650, 0), font);
 
 						TextBlock versus(Charsize, "versus", sf::Vector2f(350, Charsize), font);
@@ -1125,12 +1238,63 @@ int main()
 						{
 						combatWindow.draw(lvlBox);
 						}*/
+						sf::Texture highreshero;
+						sf::Texture highresogre;
+						highreshero.loadFromFile("CharSprites/hero.png");
+						highresogre.loadFromFile("CharSprites/ogre.png");
+						sf::Sprite combathero;
+						sf::Sprite combatogre;
+						combathero.setTexture(highreshero);
+						combatogre.setTexture(highresogre);
+						combathero.setPosition(5.0f, 75.0f);
+						combathero.setScale(0.4f, 0.4f);
+						combatogre.setPosition(435.0f, 50.0f);
+						combatogre.setScale(0.5f, 0.5f);
+
+						if (testCreep.getXP() == 42)
+						{
+							sf::Texture miniboss;
+							miniboss.loadFromFile("CharSprites/miniboss.png");
+							sf::Sprite mini;
+							mini.setTexture(miniboss);
+							mini.setPosition(240.0f, 125.0f);
+							mini.setScale(0.4f, 0.4f);
+							TextBlock creepName(Charsize, "Minotard", sf::Vector2f(600, 0), font);
+							combatWindow.draw(creepName);
+							combatWindow.draw(mini);
+						}
+						else if (testCreep.getXP() == 45)
+						{
+							sf::Texture mainboss;
+							mainboss.loadFromFile("CharSprites/mainboss.png");
+							sf::Sprite main;
+							main.setTexture(mainboss);
+							main.setPosition(500.0f, 72.5f);
+							main.setScale(0.6f, 0.6f);
+							TextBlock creepName(Charsize, "Necromancer", sf::Vector2f(600, 0), font);
+							combatWindow.draw(creepName);
+							combatWindow.draw(main);
+						}
+						else
+						{
+							sf::Texture highresogre;
+							highresogre.loadFromFile("CharSprites/ogre.png");
+							sf::Sprite combatogre;
+							combatogre.setTexture(highresogre);
+							combatogre.setPosition(435.0f, 50.0f);
+							combatogre.setScale(0.5f, 0.5f);
+							TextBlock creepName(Charsize, "Ogricus", sf::Vector2f(600, 0), font);
+							combatWindow.draw(creepName);
+							combatWindow.draw(combatogre);
+						}
+
+
 						combatWindow.draw(playerName);
 						combatWindow.draw(CombatManaBox);
 						combatWindow.draw(CombatHpBox);
 
+						combatWindow.draw(combathero);
 						combatWindow.draw(creepHPBOX);
-						combatWindow.draw(creepName);
 
 						combatWindow.draw(CombatAttack);
 						combatWindow.draw(CombatMMissile);
@@ -1166,10 +1330,10 @@ int main()
 		window.clear();
 
 		TextBlock hpBox(Charsize, "Health:", std::to_string(Player.getCurrentHP()), std::to_string(Player.getHP()), sf::Vector2f(0, 0), font);
-		TextBlock manaBox(Charsize, "Mana:", std::to_string(Player.getCurrentMana()), std::to_string(Player.getMana()), sf::Vector2f(150, 0), font);
-		TextBlock xpBox(Charsize, "XP:", std::to_string(Player.getCurrentXP()), std::to_string(Player.getNextXP()), sf::Vector2f(150, Charsize), font);
+		TextBlock manaBox(Charsize, "Mana:", std::to_string(Player.getCurrentMana()), std::to_string(Player.getMana()), sf::Vector2f(150 + Charsize * 2, 0), font);
+		TextBlock xpBox(Charsize, "XP:", std::to_string(Player.getCurrentXP()), std::to_string(Player.getNextXP()), sf::Vector2f(150 + Charsize*2, Charsize), font);
 		TextBlock lvlBox(Charsize, "LVL:", std::to_string(Player.getCurrentLVL()), sf::Vector2f(0, Charsize), font);
-		TextBlock shekelBox(Charsize, "Shekels:", std::to_string(Player.getShekels()), sf::Vector2f(290, 0), font);
+		TextBlock shekelBox(Charsize, "Shekels:", std::to_string(Player.getShekels()), sf::Vector2f(290 + Charsize * 2, 0), font);
 
 		mageAscent.getCurrentFloor()->printFloor(window);
 		window.draw(animatedSprite);
