@@ -36,8 +36,88 @@ int main()
 		return 1;
 	}
 
+	sf::Music deathKnell;
+	if (!deathKnell.openFromFile("Music\\death.ogg"))
+	{
+		std::cout << "Bad load." << std::endl; //error message
+	}
+	deathKnell.setLoop(true);
+
+	sf::Music victory;
+	if (!victory.openFromFile("Music\\victory.wav"))
+	{
+		std::cout << "Bad load." << std::endl; //error message
+	}
+	
+
 	Tower mageAscent;
 	int floor = 1;
+
+	/*Start Title Screen code*/
+
+	sf::RenderWindow titleWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "The Perils of Aeliorn: Mage's Tower Ascent");
+	titleWindow.setFramerateLimit(60);
+
+	sf::Vector2f targetSize((float)titleWindow.getSize().x, (float)titleWindow.getSize().y);
+
+	sf::Texture titleScreen;
+	titleScreen.loadFromFile("tower.jpg");
+
+	sf::Image title;
+	title.loadFromFile("titlescroll.png");
+	title.createMaskFromColor(sf::Color::Black);
+	sf::Texture titleTexture;
+	titleTexture.loadFromImage(title);
+
+	sf::Sprite titleSprite;
+	titleSprite.setTexture(titleScreen);
+	titleSprite.scale(
+		targetSize.x / titleSprite.getLocalBounds().width,
+		targetSize.y / titleSprite.getLocalBounds().height);
+
+
+	sf::Sprite titleScroll;
+	titleScroll.setTexture(titleTexture);
+	titleScroll.setPosition(((float)TILE_SIZE / 2), (float)((titleWindow.getSize().y / 2)) - (titleScroll.getLocalBounds().height / 2));
+	titleScroll.scale((targetSize.x - TILE_SIZE) / titleScroll.getLocalBounds().width, 1);
+
+	TextBlock instructions((Charsize * 1.25), "Press any key to START", sf::Vector2f(((targetSize.x / 2) - (5 * TILE_SIZE)), ((targetSize.y / 2) + (2 * TILE_SIZE))), font);
+	instructions.setFillColor(sf::Color(174, 174, 210));
+	instructions.setOutlineThickness(2.0f);
+	instructions.setOutlineColor(sf::Color::Black);
+
+	//light purple (224,224,255)
+	//medium purple (174,174,210)
+	//dark purple (112,112,157)
+
+	sf::Music titleBgm;
+	titleBgm.openFromFile("Music\\intro.ogg");
+	titleBgm.setLoop(true);
+	titleBgm.play();
+
+	while (titleWindow.isOpen())
+	{
+		sf::Event titleEvent;
+
+
+		while (titleWindow.pollEvent(titleEvent))
+		{
+			if (titleEvent.type == sf::Event::KeyPressed)
+			{
+				titleBgm.stop();
+				titleWindow.close();
+			}
+
+		}
+
+		// draw title
+		titleWindow.clear();
+		titleWindow.draw(titleSprite);
+		titleWindow.draw(titleScroll);
+		titleWindow.draw(instructions);
+		titleWindow.display();
+	}
+	/*End Title Screen Code*/
 	
 
 
@@ -127,12 +207,13 @@ int main()
 			y2 = (int)animatedSprite.getPosition().y + 23;
 			x = x / 32;
 			x2 = x2 / 32;
-			y = (y - MAP_OFFSET) / 32;
-			y2 = (y2 - MAP_OFFSET) / 32;
+			y = (y - MAP_OFFSET) / TILE_SIZE;
+			y2 = (y2 - MAP_OFFSET) / TILE_SIZE;
 			if (mageAscent.getCurrentFloor()->getTile(x, y)->getPassState() && mageAscent.getCurrentFloor()->getTile(x2, y)->getPassState() /*&&*/
 				/*mageAscent.getCurrentFloor()->getTile(x, y + 1)->getPassState()&& mageAscent.getCurrentFloor()->getTile(x + 1, y + 1)->getPassState()*/)
 			{
 				currentAnimation = &walkingAnimationLeft;
+				
 				animatedSprite.setPosition((int)animatedSprite.getPosition().x, (int)animatedSprite.getPosition().y - 2);
 			}
 			else
@@ -234,8 +315,9 @@ int main()
 							testCreep.dmgCalc(Player.hitDmg());//player attacks creep, creep takes damage
 							if (testCreep.getCurrentHP() <= 0)
 							{
-								int bullshit = 300 * floor, mana = 100;
-								Player.awardXP(bullshit);
+								victory.play();
+								int experiencePoints = 300 * floor, mana = 100;
+								Player.awardXP(experiencePoints);
 								if (Player.getCurrentXP() >= Player.getNextXP())
 								{
 									Player.setCurrentLVL(1);
@@ -254,8 +336,9 @@ int main()
 								testCreep.dmgCalc(Player.magicMissileDmg());//player attacks creep, creep takes damage
 								if (testCreep.getCurrentHP() <= 0)
 								{
-									int bullshit = 300 * floor, mana = 100;
-									Player.awardXP(bullshit);
+									victory.play();
+									int experiencePoints = 300 * floor, mana = 100;
+									Player.awardXP(experiencePoints);
 									if (Player.getCurrentXP() >= Player.getNextXP())
 									{
 										Player.setCurrentLVL(1);
@@ -301,6 +384,13 @@ int main()
 							//death animation, you die
 							combatWindow.close();
 							sf::RenderWindow deathWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "RIP", sf::Style::Titlebar);
+							mageAscent.getCurrentFloor()->stopBgm();
+
+							if (deathWindow.hasFocus())
+								deathKnell.play();
+							else
+								deathKnell.stop();
+
 							while (deathWindow.isOpen())
 							{
 								sf::Event deathEvent;
@@ -472,8 +562,9 @@ int main()
 							testCreep.dmgCalc(Player.hitDmg());//player attacks creep, creep takes damage
 							if (testCreep.getCurrentHP() <= 0)
 							{
-								int bullshit = 300 * floor, mana = 100;
-								Player.awardXP(bullshit);
+								victory.play();
+								int experiencePoints = 300 * floor, mana = 100;
+								Player.awardXP(experiencePoints);
 								if (Player.getCurrentXP() >= Player.getNextXP())
 								{
 									Player.setCurrentLVL(1);
@@ -492,8 +583,9 @@ int main()
 								testCreep.dmgCalc(Player.magicMissileDmg());//player attacks creep, creep takes damage
 								if (testCreep.getCurrentHP() <= 0)
 								{
-									int bullshit = 300 * floor, mana = 100;
-									Player.awardXP(bullshit);
+									victory.play();
+									int experiencePoints = 300 * floor, mana = 100;
+									Player.awardXP(experiencePoints);
 									if (Player.getCurrentXP() >= Player.getNextXP())
 									{
 										Player.setCurrentLVL(1);
@@ -539,6 +631,13 @@ int main()
 							//death animation, you die
 							combatWindow.close();
 							sf::RenderWindow deathWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "RIP", sf::Style::Titlebar);
+							mageAscent.getCurrentFloor()->stopBgm();
+
+							if (deathWindow.hasFocus())
+								deathKnell.play();
+							else
+								deathKnell.stop();
+							
 							while (deathWindow.isOpen())
 							{
 								sf::Event deathEvent;
@@ -708,8 +807,9 @@ int main()
 							testCreep.dmgCalc(Player.hitDmg());//player attacks creep, creep takes damage
 							if (testCreep.getCurrentHP() <= 0)
 							{
-								int bullshit = 300 * floor, mana = 100;
-								Player.awardXP(bullshit);
+								victory.play();
+								int experiencePoints = 300 * floor, mana = 100;
+								Player.awardXP(experiencePoints);
 								if (Player.getCurrentXP() >= Player.getNextXP())
 								{
 									Player.setCurrentLVL(1);
@@ -728,8 +828,9 @@ int main()
 								testCreep.dmgCalc(Player.magicMissileDmg());//player attacks creep, creep takes damage
 								if (testCreep.getCurrentHP() <= 0)
 								{
-									int bullshit = 300 * floor, mana = 100;
-									Player.awardXP(bullshit);
+									victory.play(); 
+									int experiencePoints = 300 * floor, mana = 100;
+									Player.awardXP(experiencePoints);
 									if (Player.getCurrentXP() >= Player.getNextXP())
 									{
 										Player.setCurrentLVL(1);
@@ -775,6 +876,13 @@ int main()
 							//death animation, you die
 							combatWindow.close();
 							sf::RenderWindow deathWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "RIP", sf::Style::Titlebar);
+							mageAscent.getCurrentFloor()->stopBgm();
+
+							if (deathWindow.hasFocus())
+								deathKnell.play();
+							else
+								deathKnell.stop();
+
 							while (deathWindow.isOpen())
 							{
 								sf::Event deathEvent;
@@ -944,8 +1052,9 @@ int main()
 							testCreep.dmgCalc(Player.hitDmg());//player attacks creep, creep takes damage
 							if (testCreep.getCurrentHP() <= 0)
 							{
-								int bullshit = 300 * floor, mana = 100;
-								Player.awardXP(bullshit);
+								victory.play();
+								int experiencePoints = 300 * floor, mana = 100;
+								Player.awardXP(experiencePoints);
 								if (Player.getCurrentXP() >= Player.getNextXP())
 								{
 									Player.setCurrentLVL(1);
@@ -964,8 +1073,9 @@ int main()
 								testCreep.dmgCalc(Player.magicMissileDmg());//player attacks creep, creep takes damage
 								if (testCreep.getCurrentHP() <= 0)
 								{
-									int bullshit = 300 * floor, mana = 100;
-									Player.awardXP(bullshit);
+									victory.play(); 
+									int experiencePoints = 300 * floor, mana = 100;
+									Player.awardXP(experiencePoints);
 									if (Player.getCurrentXP() >= Player.getNextXP())
 									{
 										Player.setCurrentLVL(1);
@@ -1010,7 +1120,17 @@ int main()
 							}
 							//death animation, you die
 							combatWindow.close();
+							
+							
 							sf::RenderWindow deathWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "RIP", sf::Style::Titlebar);
+							mageAscent.getCurrentFloor()->stopBgm();
+							
+
+							if (deathWindow.hasFocus())
+								deathKnell.play();
+							else
+								deathKnell.stop();
+
 							while (deathWindow.isOpen())
 							{
 								sf::Event deathEvent;
@@ -1077,37 +1197,135 @@ int main()
 			system("pause");
 		}
 		
-				animatedSprite.play(*currentAnimation);
-				animatedSprite.move(movement * frameTime.asSeconds());
+		animatedSprite.play(*currentAnimation);
+		animatedSprite.move(movement * frameTime.asSeconds());
 
-				// if no key was pressed stop the animation
-				if (noKeyWasPressed)
-				{
-					animatedSprite.stop();
-				}
-				noKeyWasPressed = true;
-
-				// update AnimatedSprite
-				animatedSprite.update(frameTime);
-
-				// draw
-				window.clear();
-
-				TextBlock hpBox(Charsize, "Health:", std::to_string(Player.getCurrentHP()), std::to_string(Player.getHP()), sf::Vector2f(0, 0), font);
-				TextBlock manaBox(Charsize, "Mana:", std::to_string(Player.getCurrentMana()), std::to_string(Player.getMana()), sf::Vector2f(150, 0), font);
-				TextBlock xpBox(Charsize, "XP:", std::to_string(Player.getCurrentXP()), std::to_string(Player.getNextXP()), sf::Vector2f(150, Charsize), font);
-				TextBlock lvlBox(Charsize, "LVL:", std::to_string(Player.getCurrentLVL()), sf::Vector2f(0, Charsize), font);
-				TextBlock shekelBox(Charsize, "Shekels:", std::to_string(Player.getShekels()), sf::Vector2f(290, 0), font);
-
-				mageAscent.getCurrentFloor()->printFloor(window);
-				window.draw(animatedSprite);
-				window.draw(manaBox);
-				window.draw(hpBox);
-				window.draw(xpBox);
-				window.draw(lvlBox);
-				window.draw(shekelBox);
-				window.draw(tipBox);
-				window.display();
-				mageAscent.getCurrentFloor()->playBgm();
-			}
+		// if no key was pressed stop the animation
+		if (noKeyWasPressed)
+		{
+			animatedSprite.stop();
 		}
+		noKeyWasPressed = true;
+
+		// update AnimatedSprite
+		animatedSprite.update(frameTime);
+
+		// draw
+		window.clear();
+
+		TextBlock hpBox(Charsize, "Health:", std::to_string(Player.getCurrentHP()), std::to_string(Player.getHP()), sf::Vector2f(0, 0), font);
+		TextBlock manaBox(Charsize, "Mana:", std::to_string(Player.getCurrentMana()), std::to_string(Player.getMana()), sf::Vector2f(150, 0), font);
+		TextBlock xpBox(Charsize, "XP:", std::to_string(Player.getCurrentXP()), std::to_string(Player.getNextXP()), sf::Vector2f(150, Charsize), font);
+		TextBlock lvlBox(Charsize, "LVL:", std::to_string(Player.getCurrentLVL()), sf::Vector2f(0, Charsize), font);
+		TextBlock shekelBox(Charsize, "Shekels:", std::to_string(Player.getShekels()), sf::Vector2f(290, 0), font);
+
+		mageAscent.getCurrentFloor()->printFloor(window);
+		window.draw(animatedSprite);
+		window.draw(manaBox);
+		window.draw(hpBox);
+		window.draw(xpBox);
+		window.draw(lvlBox);
+		window.draw(shekelBox);
+		window.draw(tipBox);
+		window.display();
+		if (window.hasFocus())
+			mageAscent.getCurrentFloor()->playBgm();
+		else
+			mageAscent.getCurrentFloor()->stopBgm();
+	}
+	/*Start Credits Screen code*/
+
+	sf::RenderWindow creditsWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "The Perils of Aeliorn: Mage's Tower Ascent");
+	titleWindow.setFramerateLimit(60);
+
+	sf::Vector2f creditsSize((float)creditsWindow.getSize().x, (float)creditsWindow.getSize().y);
+
+	sf::Texture creditsScreen;
+	creditsScreen.loadFromFile("tower.jpg");
+
+	sf::Sprite creditsSprite;
+	creditsSprite.setTexture(creditsScreen);
+	creditsSprite.scale(
+		creditsSize.x / creditsSprite.getLocalBounds().width,
+		creditsSize.y / creditsSprite.getLocalBounds().height);
+
+	TextBlock creditsReel((Charsize * 1.25), "Credits", sf::Vector2f(((creditsSize.x / 2) - (2 * TILE_SIZE)), (TILE_SIZE / 3)), font);
+	creditsReel.setFillColor(sf::Color(174, 174, 210));
+	creditsReel.setOutlineThickness(2.0f);
+	creditsReel.setOutlineColor(sf::Color::Black);
+
+	TextBlock credits1(Charsize, "Thomas Osterdock\t\t\t\t\tTiles\n\t\t\t\t\t\t\t\t\t\t\t\tFloors\n\t\t\t\t\t\t\t\t\t\t\t\tTower\n\t\t\t\t\t\t\t\t\t\t\t\tTitle\n\t\t\t\t\t\t\t\t\t\t\t\tCredits\n\t\t\t\t\t\t\t\t\t\t\t\tBackground Music", sf::Vector2f(TILE_SIZE, ((2 * TILE_SIZE))), font);
+	credits1.setFillColor(sf::Color(174, 174, 210));
+	credits1.setOutlineThickness(2.0f);
+	credits1.setOutlineColor(sf::Color::Black);
+
+	TextBlock credits2(Charsize, "Trevor Smith\t\t\t\t\t\t\tWindow Rendering\n\t\t\t\t\t\t\t\t\t\t\t\tUI Design", sf::Vector2f(TILE_SIZE, (6 * TILE_SIZE)), font);
+	credits2.setFillColor(sf::Color(174, 174, 210));
+	credits2.setOutlineThickness(2.0f);
+	credits2.setOutlineColor(sf::Color::Black);
+
+	TextBlock credits3(Charsize, "Elliott Villars\t\t\t\t\t\t\tSprite Animation\n\t\t\t\t\t\t\t\t\t\t\t\tEvent Handler: Player Movement\n\t\t\t\t\t\t\t\t\t\t\t\tPlayer Death\n\t\t\t\t\t\t\t\t\t\t\t\tVersion Control", sf::Vector2f(TILE_SIZE, (7.33 * TILE_SIZE)), font);
+	credits3.setFillColor(sf::Color(174, 174, 210));
+	credits3.setOutlineThickness(2.0f);
+	credits3.setOutlineColor(sf::Color::Black);
+
+	TextBlock credits4(Charsize, "Josh Cross\t\t\t\t\t\t\t\t Level Design\n\t\t\t\t\t\t\t\t\t\t\t\tEvent Handler: Collisions\n\t\t\t\t\t\t\t\t\t\t\t\tPlayer Stats", sf::Vector2f(TILE_SIZE, ((creditsSize.y / 2) + (0.65 * TILE_SIZE))), font);
+	credits4.setFillColor(sf::Color(174, 174, 210));
+	credits4.setOutlineThickness(2.0f);
+	credits4.setOutlineColor(sf::Color::Black);
+
+	TextBlock credits5(Charsize, "Kathy Freund\t\t\t\t\t\t   Player Character Design", sf::Vector2f(TILE_SIZE, (12 * TILE_SIZE)), font);
+	credits5.setFillColor(sf::Color(174, 174, 210));
+	credits5.setOutlineThickness(2.0f);
+	credits5.setOutlineColor(sf::Color::Black);
+
+	TextBlock credits6(Charsize, "Flying Spaghetti Monster\t\t Main.cpp", sf::Vector2f(TILE_SIZE, ((creditsSize.y / 2) + (3.33 * TILE_SIZE))), font);
+	credits6.setFillColor(sf::Color(174, 174, 210));
+	credits6.setOutlineThickness(2.0f);
+	credits6.setOutlineColor(sf::Color::Black);
+
+	TextBlock credits7(Charsize, "Game Textures and Music obtained from www.OpenGameArt.org", sf::Vector2f(TILE_SIZE, ((creditsSize.y / 2) + (5 * TILE_SIZE))), font);
+	credits7.setFillColor(sf::Color(174, 174, 210));
+	credits7.setOutlineThickness(2.0f);
+	credits7.setOutlineColor(sf::Color::Black);
+
+	//light purple (224,224,255)
+	//medium purple (174,174,210)
+	//dark purple (112,112,157)
+
+	sf::Music creditsBgm;
+	creditsBgm.openFromFile("Music\\Death Music\\old city theme.ogg");
+	creditsBgm.setLoop(true);
+	creditsBgm.play();
+
+	while (creditsWindow.isOpen())
+	{
+		sf::Event creditsEvent;
+
+
+		while (creditsWindow.pollEvent(creditsEvent))
+		{
+			if (creditsEvent.type == sf::Event::KeyPressed)
+			{
+				creditsBgm.stop();
+				creditsWindow.close();
+			}
+
+		}
+
+		// draw title
+		creditsWindow.clear();
+		creditsWindow.draw(creditsSprite);
+		creditsWindow.draw(creditsReel);
+		creditsWindow.draw(credits1);
+		creditsWindow.draw(credits2);
+		creditsWindow.draw(credits3);
+		creditsWindow.draw(credits4);
+		creditsWindow.draw(credits5);
+		creditsWindow.draw(credits6);
+		creditsWindow.draw(credits7);
+
+		creditsWindow.display();
+	}
+	/*End Credits Screen Code*/
+}

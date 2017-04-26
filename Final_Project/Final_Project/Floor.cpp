@@ -81,6 +81,11 @@ void Floor::playBgm()
 		mBgm.play(); //start playing
 }
 
+void Floor::stopBgm()
+{
+	mBgm.stop();
+}
+
 Tile *& Floor::getTile(int x, int y)
 {
 	//cout << (mLevel[x][y]->getPosition().x / 32) << (mLevel[x][y]->getPosition().y / 32) << endl;

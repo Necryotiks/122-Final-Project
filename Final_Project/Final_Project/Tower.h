@@ -19,18 +19,18 @@ class Tower
 public:
 	Tower()
 	{
-		bitmap.loadFromFile("32x32.bmp");
-		bitmap.createMaskFromColor(sf::Color::Black);
-		tileset.loadFromImage(bitmap);
+		mBitmap.loadFromFile("32x32.bmp");
+		mBitmap.createMaskFromColor(sf::Color::Black);
+		mTileset.loadFromImage(mBitmap);
 
 		//TODO: fill vector and use for creating floors
-		musicFilePaths.clear(); //base initialization 
+		//mMusicFilePaths.clear(); //base initialization 
 
 		for (int i = NUM_FLOORS; i > 0; i--)
 		{
-			string filename = "Level" + std::to_string(i) + ".txt"; //Build filename to push.
-
-			floorBlueprints.push_back(new Floor(filename, "Music\\Early Floor Music\\Ala Flair.ogg", tileset));
+			string filename = "Level" + std::to_string(i); //Build filename to push.
+			//mMusicFilePaths.push_back(filename + ".ogg");
+			mFloorBlueprints.push_back(new Floor(filename + ".txt", "Music\\" + filename + ".ogg", mTileset));
 		}
 	}
 
@@ -41,19 +41,25 @@ public:
 
 	Floor *& getCurrentFloor()
 	{
-		return floorBlueprints.back();
+		return mFloorBlueprints.back();
+	}
+
+	int getCurrentFloorNumber()
+	{
+		return (NUM_FLOORS - mFloorBlueprints.size() + 1);
 	}
 
 	void nextFloor()
 	{
-		floorBlueprints.pop_back();
+		this->getCurrentFloor()->stopBgm();
+		mFloorBlueprints.pop_back();
 	}
 
 protected:
-	sf::Image bitmap;
-	sf::Texture tileset;
-	vector<Floor *> floorBlueprints;
-	vector<string> musicFilePaths;
+	sf::Image mBitmap;
+	sf::Texture mTileset;
+	vector<Floor *> mFloorBlueprints;
+	//vector<string> mMusicFilePaths;
 
 private:
 	

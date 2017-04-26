@@ -38,6 +38,8 @@ public:
 	
 	void playBgm();
 
+	void stopBgm();
+
 	Tile *& getTile(int x, int y);
 
 	Tile *& getFloorTile();
