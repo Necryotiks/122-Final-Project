@@ -51,7 +51,6 @@ int main()
 	
 
 	Tower mageAscent;
-	int floor = 1;
 
 	/*Start Title Screen code*/
 
@@ -241,7 +240,7 @@ int main()
 			if ((mageAscent.getCurrentFloor()->getTile(x, y)->getType() == TRAP || mageAscent.getCurrentFloor()->getTile(x2, y)->getType() == TRAP) &&
 				(mageAscent.getCurrentFloor()->getTile(x, y)->getInteractState() || mageAscent.getCurrentFloor()->getTile(x2, y)->getInteractState()))
 			{
-				Player.setCurrentHP(Player.getCurrentHP() - (10 * floor));
+				Player.setCurrentHP(Player.getCurrentHP() - (10 * mageAscent.getCurrentFloorNumber()));
 				mageAscent.getCurrentFloor()->getTile(x, y)->setTileState(false);
 				mageAscent.getCurrentFloor()->getTile(x2, y)->setTileState(false);
 			}
@@ -254,23 +253,18 @@ int main()
 			{
 				mageAscent.getCurrentFloor()->getTile(x, y)->setTileState(false);
 				mageAscent.getCurrentFloor()->getTile(x2, y)->setTileState(false);
-				Creature testCreep("AndyBot", 50 * floor, 5 * floor, 10);
+				Creature testCreep("AndyBot", 50 * mageAscent.getCurrentFloorNumber(), 5 * mageAscent.getCurrentFloorNumber(), 10);
 				if ((mageAscent.getCurrentFloor()->getTile(x, y)->getType() == MOB || mageAscent.getCurrentFloor()->getTile(x2, y)->getType() == MOB))
 				{
-					testCreep.set_strength(5 * floor);
-					testCreep.setCurrentHP(50 * floor);
+					Creature testCreep("AndyBot", 50 * mageAscent.getCurrentFloorNumber(), 5 * mageAscent.getCurrentFloorNumber(), 10);
 				}
 				else if ((mageAscent.getCurrentFloor()->getTile(x, y)->getType() == MINI || mageAscent.getCurrentFloor()->getTile(x2, y)->getType() == MINI))
 				{
-					testCreep.set_strength(20);
-					testCreep.setCurrentHP(400);
-					testCreep.setHP(400);
+					Creature testCreep("AndyBot", 400, 20, 42);
 				}
 				else
 				{
-					testCreep.set_strength(50);
-					testCreep.setCurrentHP(2000);
-					testCreep.setHP(2000);
+					Creature testCreep("AndyBot", 2000, 50, 45);
 				}
 				sf::RenderWindow combatWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "Fight!", sf::Style::Titlebar);
 				combatWindow.setFramerateLimit(60);
@@ -288,7 +282,7 @@ int main()
 							if (testCreep.getCurrentHP() <= 0)
 							{
 								victory.play();
-								int experiencePoints = 300 * floor, mana = 100;
+								int experiencePoints = 300 * mageAscent.getCurrentFloorNumber(), mana = 100;
 								Player.awardXP(experiencePoints);
 								if (Player.getCurrentXP() >= Player.getNextXP())
 								{
@@ -309,7 +303,7 @@ int main()
 								if (testCreep.getCurrentHP() <= 0)
 								{
 									victory.play();
-									int experiencePoints = 300 * floor, mana = 100;
+									int experiencePoints = 300 * mageAscent.getCurrentFloorNumber(), mana = 100;
 									Player.awardXP(experiencePoints);
 									if (Player.getCurrentXP() >= Player.getNextXP())
 									{
@@ -382,7 +376,7 @@ int main()
 							}
 							exit(1);
 						}
-						TextBlock playerName(Charsize, "Mithril Jackson", sf::Vector2f(0, 0), font);
+						TextBlock playerName(Charsize, "Brave Adventurer", sf::Vector2f(0, 0), font);
 						TextBlock CombatHpBox(Charsize, "Health:", std::to_string(Player.getCurrentHP()), std::to_string(Player.getHP()), sf::Vector2f(0, Charsize), font);
 						TextBlock CombatManaBox(Charsize, "Mana:", std::to_string(Player.getCurrentMana()), std::to_string(Player.getMana()), sf::Vector2f(0, Charsize * 2), font);
 						TextBlock CombatAttack(Charsize, "Press 1 to attack with your weapon", sf::Vector2f(0, Charsize*26.5), font);
@@ -390,8 +384,8 @@ int main()
 						TextBlock CombatHeal(Charsize, "Press 3 to heal with your magic (requires 25 mana)", sf::Vector2f(0, Charsize * 28.5), font);
 
 
-						TextBlock creepHPBOX(Charsize, "Health:", std::to_string(testCreep.getCurrentHP()), std::to_string(testCreep.getHP()), sf::Vector2f(650, Charsize), font);
-						TextBlock creepName(Charsize, "AndyBot 122", sf::Vector2f(650, 0), font);
+						TextBlock creepHPBOX(Charsize, "Health:", std::to_string(testCreep.getCurrentHP()), std::to_string(testCreep.getHP()), sf::Vector2f(600, Charsize), font);
+						
 
 						TextBlock versus(Charsize, "versus", sf::Vector2f(350, Charsize), font);
 
@@ -400,12 +394,64 @@ int main()
 						{
 						combatWindow.draw(lvlBox);
 						}*/
+
+						sf::Texture highreshero;
+						sf::Texture highresogre;
+						highreshero.loadFromFile("CharSprites/hero.png");
+						highresogre.loadFromFile("CharSprites/ogre.png");
+						sf::Sprite combathero;
+						sf::Sprite combatogre;
+						combathero.setTexture(highreshero);
+						combatogre.setTexture(highresogre);
+						combathero.setPosition(5.0f, 75.0f);
+						combathero.setScale(0.4f, 0.4f);
+						combatogre.setPosition(435.0f, 50.0f);
+						combatogre.setScale(0.5f, 0.5f);
+
+						if (testCreep.getXP() == 42)
+						{
+							sf::Texture miniboss;
+							miniboss.loadFromFile("CharSprites/miniboss.png");
+							sf::Sprite mini;
+							mini.setTexture(miniboss);
+							mini.setPosition(240.0f, 125.0f);
+							mini.setScale(0.4f, 0.4f);
+							TextBlock creepName(Charsize, "Minotard", sf::Vector2f(600, 0), font);
+							combatWindow.draw(creepName);
+							combatWindow.draw(mini);
+						}
+						else if (testCreep.getXP() == 45)
+						{
+							sf::Texture mainboss;
+							mainboss.loadFromFile("CharSprites/mainboss.png");
+							sf::Sprite main;
+							main.setTexture(mainboss);
+							main.setPosition(500.0f, 72.5f);
+							main.setScale(0.6f, 0.6f);
+							TextBlock creepName(Charsize, "Necromancer", sf::Vector2f(600, 0), font);
+							combatWindow.draw(creepName);
+							combatWindow.draw(main);
+						}
+						else
+						{
+							sf::Texture highresogre;
+							highresogre.loadFromFile("CharSprites/ogre.png");
+							sf::Sprite combatogre;
+							combatogre.setTexture(highresogre);
+							combatogre.setPosition(435.0f, 50.0f);
+							combatogre.setScale(0.5f, 0.5f);
+							TextBlock creepName(Charsize, "Ogricus", sf::Vector2f(600, 0), font);
+							combatWindow.draw(creepName);
+							combatWindow.draw(combatogre);
+						}
+
+
 						combatWindow.draw(playerName);
 						combatWindow.draw(CombatManaBox);
 						combatWindow.draw(CombatHpBox);
 
+						combatWindow.draw(combathero);
 						combatWindow.draw(creepHPBOX);
-						combatWindow.draw(creepName);
 
 						combatWindow.draw(CombatAttack);
 						combatWindow.draw(CombatMMissile);
@@ -459,7 +505,7 @@ int main()
 			if ((mageAscent.getCurrentFloor()->getTile(x, y2)->getType() == TRAP || mageAscent.getCurrentFloor()->getTile(x2, y2)->getType() == TRAP) &&
 				(mageAscent.getCurrentFloor()->getTile(x, y2)->getInteractState() || mageAscent.getCurrentFloor()->getTile(x2, y2)->getInteractState()))
 			{
-				Player.setCurrentHP(Player.getCurrentHP() - (10 * floor));
+				Player.setCurrentHP(Player.getCurrentHP() - (10 * mageAscent.getCurrentFloorNumber()));
 				mageAscent.getCurrentFloor()->getTile(x, y2)->setTileState(false);
 				mageAscent.getCurrentFloor()->getTile(x2, y2)->setTileState(false);
 			}
@@ -470,7 +516,7 @@ int main()
 			{
 				mageAscent.getCurrentFloor()->getTile(x, y2)->setTileState(false);
 				mageAscent.getCurrentFloor()->getTile(x2, y2)->setTileState(false);
-				Creature testCreep("AndyBot", 50 * floor, 5 * floor, 10);
+				Creature testCreep("AndyBot", 50 * mageAscent.getCurrentFloorNumber(), 5 * mageAscent.getCurrentFloorNumber(), 10);
 				sf::RenderWindow combatWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "Fight!", sf::Style::Titlebar);
 				combatWindow.setFramerateLimit(60);
 				//set combat resolve time
@@ -487,7 +533,7 @@ int main()
 							if (testCreep.getCurrentHP() <= 0)
 							{
 								victory.play();
-								int experiencePoints = 300 * floor, mana = 100;
+								int experiencePoints = 300 * mageAscent.getCurrentFloorNumber(), mana = 100;
 								Player.awardXP(experiencePoints);
 								if (Player.getCurrentXP() >= Player.getNextXP())
 								{
@@ -508,7 +554,7 @@ int main()
 								if (testCreep.getCurrentHP() <= 0)
 								{
 									victory.play();
-									int experiencePoints = 300 * floor, mana = 100;
+									int experiencePoints = 300 * mageAscent.getCurrentFloorNumber(), mana = 100;
 									Player.awardXP(experiencePoints);
 									if (Player.getCurrentXP() >= Player.getNextXP())
 									{
@@ -657,7 +703,7 @@ int main()
 			if ((mageAscent.getCurrentFloor()->getTile(x, y)->getType() == TRAP || mageAscent.getCurrentFloor()->getTile(x, y2)->getType() == TRAP) &&
 				(mageAscent.getCurrentFloor()->getTile(x, y)->getInteractState() || mageAscent.getCurrentFloor()->getTile(x, y2)->getInteractState()))
 			{
-				Player.setCurrentHP(Player.getCurrentHP() - (10 * floor));
+				Player.setCurrentHP(Player.getCurrentHP() - (10 * mageAscent.getCurrentFloorNumber()));
 				mageAscent.getCurrentFloor()->getTile(x, y)->setTileState(false);
 				mageAscent.getCurrentFloor()->getTile(x, y2)->setTileState(false);
 			}
@@ -668,7 +714,7 @@ int main()
 			{
 				mageAscent.getCurrentFloor()->getTile(x, y)->setTileState(false);
 				mageAscent.getCurrentFloor()->getTile(x, y2)->setTileState(false);
-				Creature testCreep("AndyBot", 50 * floor, 5 * floor, 10);
+				Creature testCreep("AndyBot", 50 * mageAscent.getCurrentFloorNumber(), 5 * mageAscent.getCurrentFloorNumber(), 10);
 				sf::RenderWindow combatWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "Fight!", sf::Style::Titlebar);
 				combatWindow.setFramerateLimit(60);
 				//set combat resolve time
@@ -685,7 +731,7 @@ int main()
 							if (testCreep.getCurrentHP() <= 0)
 							{
 								victory.play();
-								int experiencePoints = 300 * floor, mana = 100;
+								int experiencePoints = 300 * mageAscent.getCurrentFloorNumber(), mana = 100;
 								Player.awardXP(experiencePoints);
 								if (Player.getCurrentXP() >= Player.getNextXP())
 								{
@@ -706,7 +752,7 @@ int main()
 								if (testCreep.getCurrentHP() <= 0)
 								{
 									victory.play(); 
-									int experiencePoints = 300 * floor, mana = 100;
+									int experiencePoints = 300 * mageAscent.getCurrentFloorNumber(), mana = 100;
 									Player.awardXP(experiencePoints);
 									if (Player.getCurrentXP() >= Player.getNextXP())
 									{
@@ -855,7 +901,7 @@ int main()
 			if ((mageAscent.getCurrentFloor()->getTile(x2, y)->getType() == TRAP || mageAscent.getCurrentFloor()->getTile(x2, y2)->getType() == TRAP) &&
 				(mageAscent.getCurrentFloor()->getTile(x2, y)->getInteractState() || mageAscent.getCurrentFloor()->getTile(x2, y2)->getInteractState()))
 			{
-				Player.setCurrentHP(Player.getCurrentHP() - (10 * floor));
+				Player.setCurrentHP(Player.getCurrentHP() - (10 * mageAscent.getCurrentFloorNumber()));
 				mageAscent.getCurrentFloor()->getTile(x2, y)->setTileState(false);
 				mageAscent.getCurrentFloor()->getTile(x2, y2)->setTileState(false);
 			}
@@ -866,7 +912,7 @@ int main()
 			{
 				mageAscent.getCurrentFloor()->getTile(x2, y)->setTileState(false);
 				mageAscent.getCurrentFloor()->getTile(x2, y2)->setTileState(false);
-				Creature testCreep("AndyBot", 50 * floor, 5 * floor, 10);
+				Creature testCreep("AndyBot", 50 * mageAscent.getCurrentFloorNumber(), 5 * mageAscent.getCurrentFloorNumber(), 10);
 				sf::RenderWindow combatWindow(sf::VideoMode(screenDimensions.x, screenDimensions.y), "Fight!", sf::Style::Titlebar);
 				combatWindow.setFramerateLimit(60);
 				//set combat resolve time
@@ -883,7 +929,7 @@ int main()
 							if (testCreep.getCurrentHP() <= 0)
 							{
 								victory.play();
-								int experiencePoints = 300 * floor, mana = 100;
+								int experiencePoints = 300 * mageAscent.getCurrentFloorNumber(), mana = 100;
 								Player.awardXP(experiencePoints);
 								if (Player.getCurrentXP() >= Player.getNextXP())
 								{
@@ -904,7 +950,7 @@ int main()
 								if (testCreep.getCurrentHP() <= 0)
 								{
 									victory.play(); 
-									int experiencePoints = 300 * floor, mana = 100;
+									int experiencePoints = 300 * mageAscent.getCurrentFloorNumber(), mana = 100;
 									Player.awardXP(experiencePoints);
 									if (Player.getCurrentXP() >= Player.getNextXP())
 									{

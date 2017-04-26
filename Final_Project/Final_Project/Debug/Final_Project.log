@@ -1,3 +1,19 @@
-﻿  PlayerCharacter.cpp
-  Final_Project.vcxproj -> C:\Users\joshm\OneDrive\Documents\GitHub\122-Final-Project\Final_Project\Debug\Final_Project.exe
-  Final_Project.vcxproj -> C:\Users\joshm\OneDrive\Documents\GitHub\122-Final-Project\Final_Project\Debug\Final_Project.pdb (Full PDB)
+﻿  main.cpp
+c:\users\kathy\desktop\final cs pa\122-final-project\final_project\final_project\main.cpp(83): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\kathy\desktop\final cs pa\122-final-project\final_project\final_project\main.cpp(175): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\kathy\desktop\final cs pa\122-final-project\final_project\final_project\main.cpp(176): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\kathy\desktop\final cs pa\122-final-project\final_project\final_project\main.cpp(186): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\kathy\desktop\final cs pa\122-final-project\final_project\final_project\main.cpp(216): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\kathy\desktop\final cs pa\122-final-project\final_project\final_project\main.cpp(221): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\kathy\desktop\final cs pa\122-final-project\final_project\final_project\main.cpp(483): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\kathy\desktop\final cs pa\122-final-project\final_project\final_project\main.cpp(488): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\kathy\desktop\final cs pa\122-final-project\final_project\final_project\main.cpp(681): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\kathy\desktop\final cs pa\122-final-project\final_project\final_project\main.cpp(686): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\kathy\desktop\final cs pa\122-final-project\final_project\final_project\main.cpp(879): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\kathy\desktop\final cs pa\122-final-project\final_project\final_project\main.cpp(884): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\kathy\desktop\final cs pa\122-final-project\final_project\final_project\main.cpp(1123): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\kathy\desktop\final cs pa\122-final-project\final_project\final_project\main.cpp(1138): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\kathy\desktop\final cs pa\122-final-project\final_project\final_project\main.cpp(1143): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\kathy\desktop\final cs pa\122-final-project\final_project\final_project\main.cpp(1153): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Final_Project.vcxproj -> C:\Users\Kathy\Desktop\Final CS PA\122-Final-Project\Final_Project\Debug\Final_Project.exe
+  Final_Project.vcxproj -> C:\Users\Kathy\Desktop\Final CS PA\122-Final-Project\Final_Project\Debug\Final_Project.pdb (Full PDB)
