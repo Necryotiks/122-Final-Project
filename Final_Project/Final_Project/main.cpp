@@ -89,6 +89,14 @@ int main()
 		targetSize.x / titleSprite.getLocalBounds().width,
 		targetSize.y / titleSprite.getLocalBounds().height);
 
+	sf::Texture combatBG;
+	combatBG.loadFromFile("combatBG.png");
+
+	sf::Sprite combatBgSprite(combatBG);
+	combatBgSprite.scale(
+		targetSize.x / combatBgSprite.getLocalBounds().width,
+		targetSize.y / combatBgSprite.getLocalBounds().height);
+
 
 	sf::Sprite titleScroll;
 	titleScroll.setTexture(titleTexture);
@@ -462,6 +470,7 @@ int main()
 							mini.setPosition(240.0f, 125.0f);
 							mini.setScale(0.4f, 0.4f);
 							TextBlock creepName(Charsize, "Minotard", sf::Vector2f(600, 0), font);
+							combatWindow.draw(combatBgSprite);
 							combatWindow.draw(creepName);
 							combatWindow.draw(mini);
 						}
@@ -474,6 +483,7 @@ int main()
 							main.setPosition(500.0f, 72.5f);
 							main.setScale(0.6f, 0.6f);
 							TextBlock creepName(Charsize, "Necromancer", sf::Vector2f(600, 0), font);
+							combatWindow.draw(combatBgSprite);
 							combatWindow.draw(creepName);
 							combatWindow.draw(main);
 						}
@@ -486,6 +496,7 @@ int main()
 							combatogre.setPosition(435.0f, 50.0f);
 							combatogre.setScale(0.5f, 0.5f);
 							TextBlock creepName(Charsize, "Ogricus", sf::Vector2f(600, 0), font);
+							combatWindow.draw(combatBgSprite);
 							combatWindow.draw(creepName);
 							combatWindow.draw(combatogre);
 						}
@@ -729,6 +740,7 @@ int main()
 							mini.setPosition(240.0f, 125.0f);
 							mini.setScale(0.4f, 0.4f);
 							TextBlock creepName(Charsize, "Minotard", sf::Vector2f(600, 0), font);
+							combatWindow.draw(combatBgSprite);
 							combatWindow.draw(creepName);
 							combatWindow.draw(mini);
 						}
@@ -741,6 +753,7 @@ int main()
 							main.setPosition(500.0f, 72.5f);
 							main.setScale(0.6f, 0.6f);
 							TextBlock creepName(Charsize, "Necromancer", sf::Vector2f(600, 0), font);
+							combatWindow.draw(combatBgSprite);
 							combatWindow.draw(creepName);
 							combatWindow.draw(main);
 						}
@@ -753,6 +766,7 @@ int main()
 							combatogre.setPosition(435.0f, 50.0f);
 							combatogre.setScale(0.5f, 0.5f);
 							TextBlock creepName(Charsize, "Ogricus", sf::Vector2f(600, 0), font);
+							combatWindow.draw(combatBgSprite);
 							combatWindow.draw(creepName);
 							combatWindow.draw(combatogre);
 						}
@@ -993,6 +1007,7 @@ int main()
 							mini.setPosition(240.0f, 125.0f);
 							mini.setScale(0.4f, 0.4f);
 							TextBlock creepName(Charsize, "Minotard", sf::Vector2f(600, 0), font);
+							combatWindow.draw(combatBgSprite);
 							combatWindow.draw(creepName);
 							combatWindow.draw(mini);
 						}
@@ -1005,6 +1020,7 @@ int main()
 							main.setPosition(500.0f, 72.5f);
 							main.setScale(0.6f, 0.6f);
 							TextBlock creepName(Charsize, "Necromancer", sf::Vector2f(600, 0), font);
+							combatWindow.draw(combatBgSprite);
 							combatWindow.draw(creepName);
 							combatWindow.draw(main);
 						}
@@ -1017,6 +1033,7 @@ int main()
 							combatogre.setPosition(435.0f, 50.0f);
 							combatogre.setScale(0.5f, 0.5f);
 							TextBlock creepName(Charsize, "Ogricus", sf::Vector2f(600, 0), font);
+							combatWindow.draw(combatBgSprite);
 							combatWindow.draw(creepName);
 							combatWindow.draw(combatogre);
 						}
@@ -1260,6 +1277,7 @@ int main()
 							mini.setPosition(240.0f, 125.0f);
 							mini.setScale(0.4f, 0.4f);
 							TextBlock creepName(Charsize, "Minotard", sf::Vector2f(600, 0), font);
+							combatWindow.draw(combatBgSprite);
 							combatWindow.draw(creepName);
 							combatWindow.draw(mini);
 						}
@@ -1272,6 +1290,7 @@ int main()
 							main.setPosition(500.0f, 72.5f);
 							main.setScale(0.6f, 0.6f);
 							TextBlock creepName(Charsize, "Necromancer", sf::Vector2f(600, 0), font);
+							combatWindow.draw(combatBgSprite);
 							combatWindow.draw(creepName);
 							combatWindow.draw(main);
 						}
@@ -1284,6 +1303,7 @@ int main()
 							combatogre.setPosition(435.0f, 50.0f);
 							combatogre.setScale(0.5f, 0.5f);
 							TextBlock creepName(Charsize, "Ogricus", sf::Vector2f(600, 0), font);
+							combatWindow.draw(combatBgSprite);
 							combatWindow.draw(creepName);
 							combatWindow.draw(combatogre);
 						}
