@@ -175,7 +175,7 @@ int main()
 	// set up AnimatedSprite
 	AnimatedSprite animatedSprite(sf::seconds(0.2), true, false);
 	animatedSprite.setScale(.9, .9);
-	animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 14 * TILE_SIZE);
+	animatedSprite.setPosition(mageAscent.getCurrentFloor()->getStartPosition());
 
 	sf::Clock frameClock;
 
@@ -225,56 +225,7 @@ int main()
 			//Sets player to starting location based on floor!
 			if (mageAscent.getCurrentFloor()->getTile(x, y)->getType() == STAIRS || mageAscent.getCurrentFloor()->getTile(x2, y)->getType() == STAIRS)
 			{
-				floor++; 
-				switch (floor)
-				{
-				case 2: 
-					mageAscent.nextFloor();
-					animatedSprite.setPosition(23 * TILE_SIZE, MAP_OFFSET + 14 * TILE_SIZE);
-					break;
-				case 3:
-					animatedSprite.setPosition(2 * TILE_SIZE, MAP_OFFSET + 1 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 4:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 5:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 6:
-					animatedSprite.setPosition(20 * TILE_SIZE, MAP_OFFSET + 7 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 7:
-					animatedSprite.setPosition(1 * TILE_SIZE, MAP_OFFSET + 1 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 8:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 9:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 10:
-					animatedSprite.setPosition(23 * TILE_SIZE, MAP_OFFSET + 14 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 11:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 14 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 12:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 13:
-					window.close();
-				}
+				animatedSprite.setPosition(mageAscent.nextFloor());
 			}
 
 			//Gives loot for walking over chests, maybe add exp bonus?
@@ -492,54 +443,7 @@ int main()
 			}
 			if (mageAscent.getCurrentFloor()->getTile(x, y2)->getType() == STAIRS || mageAscent.getCurrentFloor()->getTile(x2, y2)->getType() == STAIRS)
 			{
-				floor++;
-				switch (floor)
-				{
-				case 2:
-					mageAscent.nextFloor();
-					animatedSprite.setPosition(23 * TILE_SIZE, MAP_OFFSET + 14 * TILE_SIZE);
-					break;
-				case 3:
-					animatedSprite.setPosition(2 * TILE_SIZE, MAP_OFFSET + 1 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 4:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 5:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 6:
-					animatedSprite.setPosition(20 * TILE_SIZE, MAP_OFFSET + 7 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 7:
-					animatedSprite.setPosition(1 * TILE_SIZE, MAP_OFFSET + 1 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 8:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 9:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 10:
-					animatedSprite.setPosition(23 * TILE_SIZE, MAP_OFFSET + 14 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 11:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 14 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 12:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				}
+				animatedSprite.setPosition(mageAscent.nextFloor());
 			}
 
 			//Gives loot for walking over chests, maybe add exp bonus?
@@ -737,54 +641,7 @@ int main()
 			}
 			if (mageAscent.getCurrentFloor()->getTile(x, y)->getType() == STAIRS || mageAscent.getCurrentFloor()->getTile(x, y2)->getType() == STAIRS)
 			{
-				floor++;
-				switch (floor)
-				{
-				case 2:
-					mageAscent.nextFloor();
-					animatedSprite.setPosition(23 * TILE_SIZE, MAP_OFFSET + 14 * TILE_SIZE);
-					break;
-				case 3:
-					animatedSprite.setPosition(2 * TILE_SIZE, MAP_OFFSET + 1 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 4:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 5:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 6:
-					animatedSprite.setPosition(20 * TILE_SIZE, MAP_OFFSET + 7 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 7:
-					animatedSprite.setPosition(1 * TILE_SIZE, MAP_OFFSET + 1 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 8:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 9:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 10:
-					animatedSprite.setPosition(23 * TILE_SIZE, MAP_OFFSET + 14 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 11:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 14 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 12:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				}
+				animatedSprite.setPosition(mageAscent.nextFloor());
 			}
 
 			//Gives loot for walking over chests, maybe add exp bonus?
@@ -982,54 +839,7 @@ int main()
 			}
 			if (mageAscent.getCurrentFloor()->getTile(x2, y)->getType() == STAIRS || mageAscent.getCurrentFloor()->getTile(x2, y2)->getType() == STAIRS)
 			{
-				floor++;
-				switch (floor)
-				{
-				case 2:
-					mageAscent.nextFloor();
-					animatedSprite.setPosition(23 * TILE_SIZE, MAP_OFFSET + 14 * TILE_SIZE);
-					break;
-				case 3:
-					animatedSprite.setPosition(2 * TILE_SIZE, MAP_OFFSET + 1 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 4:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 5:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 6:
-					animatedSprite.setPosition(20 * TILE_SIZE, MAP_OFFSET + 7 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 7:
-					animatedSprite.setPosition(1 * TILE_SIZE, MAP_OFFSET + 1 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 8:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 9:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 10:
-					animatedSprite.setPosition(23 * TILE_SIZE, MAP_OFFSET + 14 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 11:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 14 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				case 12:
-					animatedSprite.setPosition(12 * TILE_SIZE, MAP_OFFSET + 12 * TILE_SIZE);
-					mageAscent.nextFloor();
-					break;
-				}
+				animatedSprite.setPosition(mageAscent.nextFloor());
 			}
 
 			//Gives loot for walking over chests, maybe add exp bonus?
@@ -1210,12 +1020,6 @@ int main()
 		{
 			currentAnimation = &DeathAnimation;
 			noKeyWasPressed = false;
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::N))
-		{
-			mageAscent.nextFloor();
-			system("pause");
-			floor++;
 		}
 		
 		animatedSprite.play(*currentAnimation);

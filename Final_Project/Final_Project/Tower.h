@@ -63,11 +63,12 @@ public:
 		return (NUM_FLOORS - mFloorBlueprints.size() + 1);
 	}
 
-	void nextFloor()
+	sf::Vector2f & nextFloor()
 	{
 		this->getCurrentFloor()->stopBgm();
 		mFloorBlueprints.pop_back();
-
+		return	this->getCurrentFloor()->getStartPosition();
+		 
 	}
 
 protected:
